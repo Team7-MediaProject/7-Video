@@ -36,8 +36,9 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
 
     }
 
+    // viewType에 따른 데이터 binding 방식 변경
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+        val position = getI
     }
 
     inner class FavoriteHolder(view: View) : RecyclerView.ViewHolder(view) {
