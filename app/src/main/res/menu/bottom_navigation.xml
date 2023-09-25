@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon=""
+        android:title="Home" />
+    <item
+        android:id="@+id/navigation_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon=""
+        android:title="Search" />
+    <item
+        android:id="@+id/navigation_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:title="My Video" />
+</menu>
