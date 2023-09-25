@@ -1,6 +1,8 @@
 package com.example.teamtube
 
 import android.content.Context
+import android.text.Layout
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,9 +12,24 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TYPE_FAVORTIE = 0
     private val TYPE_CHANNEL = 1
-    private val TYPE_VIDEO = 2
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
+        // viewType에 따른 viewHolder 반환
+        return when(viewType) {
+            TYPE_FAVORTIE -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.most_popular_item, parent, false)
+                FavoriteHolder(view)
+            }
+            TYPE_CHANNEL -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.category_channel_item, parent, false)
+                ChannelHolder(view)
+            }
+            else -> {
+                view = LayoutInflater.from(parent.context).inflate(R.layout.category_video_item, parent, false)
+                VideoHolder(view)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
