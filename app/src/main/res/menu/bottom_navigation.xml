@@ -5,18 +5,18 @@
         android:id="@+id/navigation_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon=""
+        android:icon="@drawable/icon_nav_home"
         android:title="Home" />
     <item
         android:id="@+id/navigation_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon=""
+        android:icon="@drawable/icon_nav_search"
         android:title="Search" />
     <item
         android:id="@+id/navigation_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
+        android:icon="@drawable/icon_nav_myvideo"
         android:title="My Video" />
 </menu>
