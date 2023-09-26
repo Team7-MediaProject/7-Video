@@ -26,6 +26,8 @@
         android:text="동영상 제목이다!!!!"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:maxLines="2"
+        android:ellipsize="end"
         app:layout_constraintStart_toStartOf="@+id/home_category_video_image"
         app:layout_constraintTop_toBottomOf="@+id/home_category_video_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

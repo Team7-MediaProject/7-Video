@@ -24,7 +24,6 @@
         android:layout_height="115dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mp_videos" />
 
@@ -45,7 +44,6 @@
         android:layout_height="126dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_channels" />
 
@@ -54,12 +52,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_videos"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-1dp" />
+        tools:listitem="@layout/category_video_item"/>
 
     <TextView
         android:id="@+id/category_videos"
@@ -67,6 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="동영상"
+        android:textSize="25sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
