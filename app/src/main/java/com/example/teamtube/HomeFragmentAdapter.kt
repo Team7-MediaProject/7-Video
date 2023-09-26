@@ -41,15 +41,15 @@ class HomeFragmentAdapter(private val mContext: Context, private val mItems : Mu
         val itemType = mItems[position].type
         when(itemType) {
             TYPE_FAVORTIE -> {
-                (holder as FavoriteHolder).bind(mItems[position])
+                //(holder as FavoriteHolder).bind(mItems[position])
                 holder.setIsRecyclable(false)
             }
             TYPE_CHANNEL -> {
-                (holder as ChannelHolder).bind(mItems[position])
+                //(holder as ChannelHolder).bind(mItems[position])
                 holder.setIsRecyclable(false)
             }
             TYPE_VIDEO -> {
-                (holder as VideoHolder).bind(mItems[position])
+                //(holder as VideoHolder).bind(mItems[position])
                 holder.setIsRecyclable(false)
             }
         }
@@ -59,30 +59,30 @@ class HomeFragmentAdapter(private val mContext: Context, private val mItems : Mu
         val favorite_image = view.findViewById<ImageView>(R.id.img_mpv)
 
         // api 이용할  Glide로 추후 변경
-        fun bind(item:HomeData) {
+/*        fun bind(item:HomeData) {
             favorite_image.setImageResource(item.image)
-        }
+        }*/
     }
 
     inner class ChannelHolder(view: View) : RecyclerView.ViewHolder(view) {
         val channel_image = view.findViewById<ImageView>(R.id.img_channel)
         val channel_title = view.findViewById<TextView>(R.id.title_channel)
-        fun bind(item : HomeData){
+/*        fun bind(item : HomeData){
             // api 이용할  Glide로 추후 변경
             channel_image.setImageResource(item.image)
             channel_title.text = item.title
-        }
+        }*/
     }
 
     inner class VideoHolder(view: View) : RecyclerView.ViewHolder(view) {
         val video_image = view.findViewById<ImageView>(R.id.home_category_video_image)
         val video_title = view.findViewById<TextView>(R.id.home_category_video_title)
 
-        fun bind(item : HomeData){
+/*        fun bind(item : HomeData){
             // api 이용할  Glide로 추후 변경
             video_image.setImageResource(item.image)
             video_title.text = item.title
-        }
+        }*/
 
         // 사진 모서리 둥글게 잘라버리긔~
         init {

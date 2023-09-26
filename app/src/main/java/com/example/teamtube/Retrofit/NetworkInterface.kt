@@ -4,11 +4,21 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
-interface NetworkInterface {
-    @GET("videos")
-    suspend fun getVideoInfo(
-        //@QueryMap param : HashMap<String, String>
-        @Query("part") part : String,
-        @Query("id") id : String,
-    ): SearchVideoResponse
+// MostPopular interface
+interface VideoNetworkInterface {
+}
+
+// Category-Channel interface
+interface ChannelInterface {
+}
+
+// Category-Video interface
+interface VideoInterface {
+    @GET("videoCategories")
+    suspend fun getCategoryInfo(
+        @QueryMap param : HashMap<String, String>
+        /*@Query("part") part: String,
+        @Query("regionCode") regionCode: String,
+        @Query("Key") apiKey: String*/
+    ) : Root
 }
