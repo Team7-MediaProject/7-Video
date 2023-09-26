@@ -1,5 +1,6 @@
 package com.example.teamtube.Retrofit
 
+class VideoData(val videoRoot : Root)
 data class Root(
     val kind: String,
     val etag: String,

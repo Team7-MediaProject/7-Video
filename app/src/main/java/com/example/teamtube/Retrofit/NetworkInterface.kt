@@ -5,7 +5,7 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 // MostPopular interface
-interface VideoNetworkInterface {
+interface PopularInterface {
 }
 
 // Category-Channel interface
