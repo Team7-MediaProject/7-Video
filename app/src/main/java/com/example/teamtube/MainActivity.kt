@@ -1,5 +1,6 @@
 package com.example.teamtube
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +16,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "보던지 말던지"
+
         initViewPager()
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun initViewPager() {
         //ViewPager2 Adapter 셋팅
         var viewPager2Adatper = ViewPager2Adapter(this)
@@ -40,9 +45,18 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tlNavigationView, binding.vpViewpagerMain) { tab, position ->
             Log.e("YMC", "ViewPager position: ${position}")
             when (position) {
-                0 -> tab.text = "Home"
-                1 -> tab.text = "Search"
-                2 -> tab.text = "My Video"
+                0 -> {
+                    tab.text = "Home"
+                    tab.icon = resources.getDrawable(R.drawable.icon_nav_home, null)
+                }
+                1 -> {
+                    tab.text = "Search"
+                    tab.icon = resources.getDrawable(R.drawable.icon_nav_search, null)
+                }
+                2 -> {
+                    tab.text = "My Video"
+                    tab.icon = resources.getDrawable(R.drawable.icon_nav_myvideo, null)
+                }
             }
         }.attach()
     }
