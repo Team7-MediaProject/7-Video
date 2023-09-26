@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textSize="23sp"
+        android:textColor="@color/black"
         android:text="인기동영상"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
@@ -33,6 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="채널"
+        android:textSize="23sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +51,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_channels" />
 
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/category_videos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="동영상 "
+        android:textSize="23sp"
+        android:textColor="@color/black"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_tint="@color/red_400"
+        app:spinner_divider_color="@color/grey_200"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="1dp"
+        app:spinner_item_height="50dp"
+        app:spinner_popup_animation="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView3"
         android:layout_width="match_parent"
@@ -56,17 +80,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_videos"
         tools:listitem="@layout/category_video_item"/>
-
-    <TextView
-        android:id="@+id/category_videos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="동영상"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
