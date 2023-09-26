@@ -16,4 +16,6 @@ object VideoNetworkClient {
     val channelService = retrofit.create(ChannelInterface::class.java)
     // Category-Video retrofit
     val videoService = retrofit.create(VideoInterface::class.java)
+    // VideoImage retrofit - 썸네일
+    val imageService = retrofit.create(VideoImageInterface::class.java)
 }

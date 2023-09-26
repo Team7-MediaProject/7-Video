@@ -1,10 +1,9 @@
-package com.example.teamtube.Retrofit
+package com.example.teamtube.Retrofit.Model
 
-class VideoData(val videoRoot : Root)
 data class Root(
     val kind: String,
     val etag: String,
-    val items: List<Item>,
+    val items: MutableList<Item>,
 )
 
 data class Item(
