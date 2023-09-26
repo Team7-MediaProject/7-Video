@@ -1,23 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8000FF00"
+    android:background="@color/white"
     tools:context=".HomeFragment">
 
-    <TextView
+    <EditText
+        android:id="@+id/sf_et_search"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/searchfragment_et_round_corner_rectangle"
+        android:hint="찾던지 말던지"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <ImageButton
+        android:id="@+id/sf_btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Search!!"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_searchfragment_search"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sf_et_search"
+        app:layout_constraintTop_toTopOf="@id/sf_et_search" />
+
+    <LinearLayout
+        android:id="@+id/sf_lin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/sf_et_search"
+        app:layout_constraintTop_toBottomOf="@id/sf_et_search">
+
+        <Button
+            android:id="@+id/sf_btn_healing"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:text="힐링"
+            android:background="@drawable/searchfragment_btn_click_color"></Button>
+
+        <Button
+            android:id="@+id/sf_btn_asmr"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="수면음악"
+            android:background="@drawable/searchfragment_btn_click_color"></Button>
+
+        <Button
+            android:id="@+id/sf_btn_game"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="게임"
+            android:background="@drawable/searchfragment_btn_click_color"></Button>
+
+        <Button
+            android:id="@+id/sf_btn_movie"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="20dp"
+            android:text="영화"
+            android:background="@drawable/searchfragment_btn_click_color"></Button>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sf_lin">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
