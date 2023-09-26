@@ -36,10 +36,13 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
+    // spinner
+    implementation "com.github.skydoves:powerspinner:1.2.6"
+
+/*    implementation 'com.google.apis:google-api-services-youtube:v3-rev183-1.22.0'
     implementation 'com.google.http-client:google-http-client-android:1.38.1'
     implementation 'com.google.api-client:google-api-client-android:1.31.2'
-    implementation 'com.google.api-client:google-api-client-gson:1.31.2'
+    implementation 'com.google.api-client:google-api-client-gson:1.31.2'*/
 
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
