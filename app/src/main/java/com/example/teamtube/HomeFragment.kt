@@ -35,8 +35,8 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun communicateCategoryVideo(param: HashMap<String, String>) = lifecycleScope.launch {
-        val response = VideoNetworkClient.categoryVideoService.getCategoryVideoInfo(param)
+    private fun communicateCategoryVideo() = lifecycleScope.launch {
+        val response = VideoNetworkClient.categoryVideoService.getCategoryVideoInfo()
         items = response.items
 
         // HomeData에 데이터 정보 추가
@@ -44,8 +44,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun communicateVideo(param: HashMap<String, String>) = lifecycleScope.launch {
-        val response = VideoNetworkClient.VideoService.getVideoInfo(param)
+    private fun communicateVideo() = lifecycleScope.launch {
+        val response = VideoNetworkClient.VideoService.getVideoInfo()
         items = response.
     }
 }
