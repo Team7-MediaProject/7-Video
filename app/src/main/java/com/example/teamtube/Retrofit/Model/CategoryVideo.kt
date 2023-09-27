@@ -1,5 +1,7 @@
 package com.example.teamtube.Retrofit.Model
 
+data class CategoryVideo(val root : Root, val item : Item, val snippet: Snippet)
+
 data class Root(
     val kind: String,
     val etag: String,

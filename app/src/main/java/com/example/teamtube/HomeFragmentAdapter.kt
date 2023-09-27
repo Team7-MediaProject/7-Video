@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.teamtube.Retrofit.Model.Item
+import com.example.teamtube.Retrofit.Model.VideoItem
 
 class HomeFragmentAdapter(private val mContext: Context, private val mItems : MutableList<HomeData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TYPE_FAVORTIE = 0
@@ -78,11 +81,17 @@ class HomeFragmentAdapter(private val mContext: Context, private val mItems : Mu
         val video_image = view.findViewById<ImageView>(R.id.home_category_video_image)
         val video_title = view.findViewById<TextView>(R.id.home_category_video_title)
 
-/*        fun bind(item : HomeData){
+        fun bind(item : VideoItem){
             // api 이용할  Glide로 추후 변경
-            video_image.setImageResource(item.image)
-            video_title.text = item.title
-        }*/
+            val videoItems = item.snippet.thumbnails
+            if(videoItems != null) {
+                val thumnailUrl = videoItems.high
+                Glide.with(mContext)
+                    .load(thumnailUrl)
+                    .into(video_image)
+            }
+            video_title.text = item.snippet.title
+        }
 
         // 사진 모서리 둥글게 잘라버리긔~
         init {
