@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Retrofit.Model.Item
-import com.example.teamtube.Retrofit.VideoNetworkClient
+import com.example.teamtube.Retrofit.VideoNetworkClient.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
-import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
@@ -28,24 +27,28 @@ class HomeFragment : Fragment() {
     ): View? {
         /*_binding = FragmentHomeBinding.inflate(inflater, container, false)*/
         binding.categoryVideos.setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
+            // spinner 선택 시 title 값 설정
             var selectedItem = items.filter { f -> f.snippet.title == text }
-            var categoryId = items.filter { f -> f.snippet.channelId == text}
+            // spinner 선택 시 channelId 값 설정
+            var categoryId = items.filter { f -> f.id == text }
             binding.categoryVideos.text = selectedItem[0].snippet.title
+            communicateVideo(categoryId[0].id)
         }
         return binding.root
     }
 
-    private fun communicateCategoryVideo() = lifecycleScope.launch {
-        val response = VideoNetworkClient.categoryVideoService.getCategoryVideoInfo()
-        items = response.items
+    // Category-Video Network 설정 -동
+    private fun communicateCategoryVideo() {
+        val response = apiService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY).execute()
+
 
         // HomeData에 데이터 정보 추가
         val selectedList = items.map {
         }
     }
 
-    private fun communicateVideo() = lifecycleScope.launch {
-        val response = VideoNetworkClient.VideoService.getVideoInfo()
-        items = response.
+    // Video Network 설정 - 동기적으로
+    private fun communicateVideo(id: String) {
+        val response = apiService.getVideoInfo("snippet", "mostPopular", 10, id, Constrants.API_KEY)
     }
 }

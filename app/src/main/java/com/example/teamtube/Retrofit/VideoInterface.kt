@@ -2,18 +2,11 @@ package com.example.teamtube.Retrofit
 
 import com.example.teamtube.Retrofit.Model.Root
 import com.example.teamtube.Retrofit.Model.Video
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface VideoInterface {
-
-/*    fun getChannelInfo(
-
-    )*/
-
-    /*fun getPopularInfo(
-
-    )*/
 
     @GET("videoCategories")
     fun getCategoryVideoInfo (
@@ -21,7 +14,7 @@ interface VideoInterface {
             @Query("part") part: String,
             @Query("regionCode") regionCode: String,
             @Query("key") apiKey: String
-    ) : Root
+    ) : Call<Root>
 
     @GET("videos")
 
@@ -32,5 +25,5 @@ interface VideoInterface {
         @Query("maxResults") maxResults : Int,
         @Query("videoCategoryId") videoCategoryId : String,
         @Query("key") apiKey : String
-    ) : Video
+    ) : Call<Video>
 }
