@@ -9,9 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Retrofit.Model.Item
+import com.example.teamtube.Retrofit.Model.Snippets
+import com.example.teamtube.Retrofit.Model.Video
+import com.example.teamtube.Retrofit.Model.VideoItem
 import com.example.teamtube.Retrofit.VideoNetworkClient.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
 import com.skydoves.powerspinner.IconSpinnerAdapter
@@ -20,8 +25,9 @@ import java.lang.Exception
 
 class HomeFragment : Fragment() {
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var adapter: HomeFragmentAdapter
     var items = listOf<Item>()
+
     /*private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!*/
 
@@ -35,6 +41,10 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         /*_binding = FragmentHomeBinding.inflate(inflater, container, false)*/
+        binding.recyclerView3.layoutManager = LinearLayoutManager(context)
+        adapter = HomeFragmentAdapter(requireContext())
+        binding.recyclerView3.adapter = adapter
+
         binding.categoryVideos.setOnSpinnerItemSelectedListener<IconSpinnerItem> { _, _, _, item ->
             // spinner 선택 시 category 값 설정
             val selectedCategory = item.text.toString()
@@ -79,6 +89,10 @@ class HomeFragment : Fragment() {
             val response = apiService.getVideoInfo("snippet", "mostPopular", 10, id, Constrants.API_KEY).execute()
             if(response.isSuccessful) {
                 val responseBody = response.body()
+                responseBody?.item
+                val videoItems = responseBody?.item ?: emptyList<VideoItem>()
+
+                HomeFragmentAdapter.VideoHolder(videoItems)
 
             }
         } catch (e : Exception) {
