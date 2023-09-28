@@ -4,7 +4,7 @@ data class Video(val response: VideoResponse, val item: VideoItem)
 data class VideoResponse(
     val kind: String,
     val etag: String,
-    val items: List<Item>,
+    val items: List<VideoItem>,
     val nextPageToken: String,
     val pageInfo: PageInfo,
 )

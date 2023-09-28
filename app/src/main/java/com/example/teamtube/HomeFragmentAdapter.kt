@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.teamtube.Retrofit.Model.Item
 import com.example.teamtube.Retrofit.Model.VideoItem
 
 class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -16,6 +17,12 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
     private val TYPE_FAVORTIE = 0
     private val TYPE_CHANNEL = 1
     private val TYPE_VIDEO = 2
+
+    fun setVideoItems(videoItem: List<VideoItem>) {
+        mItems.clear()
+        mItems.addAll(videoItem)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
@@ -99,4 +106,6 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
             video_image.clipToOutline = true
         }
     }
+
+
 }
