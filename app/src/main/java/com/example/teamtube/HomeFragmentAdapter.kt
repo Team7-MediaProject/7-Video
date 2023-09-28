@@ -2,14 +2,17 @@ package com.example.teamtube
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Retrofit.Model.Item
 import com.example.teamtube.Retrofit.Model.VideoItem
+import com.bumptech.glide.Glide
+import com.example.teamtube.databinding.MostPopularItemBinding
+import com.example.teamtube.model.HomeitemModel
+
+class HomeFragmentAdapter(private val context: Context) :
+    RecyclerView.Adapter<HomeFragmentAdapter.VideoViewHolder>() {
 
 class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mItems = mutableListOf<VideoItem>()
@@ -17,6 +20,7 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
     private val TYPE_FAVORTIE = 0
     private val TYPE_CHANNEL = 1
     private val TYPE_VIDEO = 2
+    private val items: MutableList<HomeitemModel> = mutableListOf()
 
     fun setVideoItems(videoItem: List<VideoItem>) {
         mItems.clear()
@@ -41,6 +45,18 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
                 VideoHolder(view)
             }
         }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
+        val binding = MostPopularItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return VideoViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
+        val item = items[position]
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int {
@@ -64,17 +80,25 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
                 holder.setIsRecyclable(false)
             }
         }
+        return items.size
     }
 
+    inner class VideoViewHolder(private val binding: MostPopularItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 /*    inner class FavoriteHolder(view: View) : RecyclerView.ViewHolder(view) {
         val favorite_image = view.findViewById<ImageView>(R.id.img_mpv)
 
+        fun bind(item: HomeitemModel) {
+            binding.scInfo.text = item.title
         // api 이용할  Glide로 추후 변경
         fun bind(item:HomeData) {
             favorite_image.setImageResource(item.image)
         }
     }*/
 
+            Glide.with(context)
+                .load(item.thumbnails)
+                .into(binding.imgMpv)
 /*    inner class ChannelHolder(view: View) : RecyclerView.ViewHolder(view) {
         val channel_image = view.findViewById<ImageView>(R.id.img_channel)
         val channel_title = view.findViewById<TextView>(R.id.title_channel)
@@ -83,6 +107,7 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
             channel_image.setImageResource(item.image)
             channel_title.text = item.title
         }
+    }
     }*/
 
     inner class VideoHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -101,10 +126,10 @@ class HomeFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<
             video_title.text = item.snippet.title
         }
 
-        // 사진 모서리 둥글게 잘라버리긔~
-        init {
-            video_image.clipToOutline = true
-        }
+    fun updateData(newItems: List<HomeitemModel>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
     }
 
 

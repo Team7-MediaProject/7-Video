@@ -9,8 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profile_card_view"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="30dp"
         app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +51,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liked_channel_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/liked_channel_text_view"
         tools:ignore="SpeakableTextPresentCheck"
-        tools:listitem="@layout/liked_channel_item" />
+        tools:listitem="@layout/category_channel_item" />
 
     <TextView
         android:id="@+id/liked_video_text_view"
@@ -76,13 +76,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liked_video_recycler_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/liked_video_text_view"
-        tools:listitem="@layout/liked_video_item" />
+        tools:listitem="@layout/category_video_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
