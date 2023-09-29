@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object VideoNetworkClient {
-    val apiService: VideoInterface
+    val apiCategoryService: VideoInterface
         get() = retrofit.create(VideoInterface::class.java)
 
     private val retrofit = Retrofit.Builder()

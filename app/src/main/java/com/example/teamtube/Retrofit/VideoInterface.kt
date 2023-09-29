@@ -1,5 +1,6 @@
 package com.example.teamtube.Retrofit
 
+import com.example.teamtube.Retrofit.Model.CategoryVideo
 import com.example.teamtube.Retrofit.Model.Root
 import com.example.teamtube.Retrofit.Model.Video
 import retrofit2.Call
@@ -14,7 +15,7 @@ interface VideoInterface {
             @Query("part") part: String,
             @Query("regionCode") regionCode: String,
             @Query("key") apiKey: String
-    ) : Call<Root>
+    ) : Call<CategoryVideo>
 
     @GET("videos")
 
@@ -24,6 +25,7 @@ interface VideoInterface {
         @Query("chart") chart : String,
         @Query("maxResults") maxResults : Int,
         @Query("videoCategoryId") videoCategoryId : String,
+        @Query("regionCode") regionCode: String,
         @Query("key") apiKey : String
     ) : Call<Video>
 }
