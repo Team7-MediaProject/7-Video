@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_most_popular" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/rv_channel"
         android:layout_width="409dp"
         android:layout_height="126dp"
         android:layout_marginTop="12dp"
@@ -70,5 +70,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_channel" />
 </androidx.constraintlayout.widget.ConstraintLayout>
