@@ -171,4 +171,7 @@ class SearchFragment : Fragment() {
         imm.hideSoftInputFromWindow(binding.sfEtSearch.windowToken, 0)
     }
 
+
+    //test
+
 }
