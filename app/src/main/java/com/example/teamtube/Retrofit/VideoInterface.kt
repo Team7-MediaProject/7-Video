@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface VideoInterface {
 
-    @GET("videoCategories")
+    @GET("v3/videoCategories")
     fun getCategoryVideoInfo (
             //@QueryMap param : HashMap<String, String>
             @Query("part") part: String,
@@ -17,7 +17,7 @@ interface VideoInterface {
             @Query("key") apiKey: String
     ) : Call<CategoryVideo>
 
-    @GET("videos")
+    @GET("v3/videos")
 
     fun getVideoInfo (
         //@QueryMap param : HashMap<String, String>

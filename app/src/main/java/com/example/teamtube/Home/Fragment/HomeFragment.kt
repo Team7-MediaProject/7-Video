@@ -85,7 +85,8 @@ class HomeFragment : Fragment() {
             chart = "mostPopular",
             maxResults = 10,
             regionCode = "KR",
-            apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
+            apikey = Constrants.API_KEY
+            //apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
         ).enqueue(object : Callback<Root> {
             override fun onResponse(
                 call: Call<Root>,
