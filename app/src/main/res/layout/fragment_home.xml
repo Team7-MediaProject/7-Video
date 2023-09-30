@@ -65,7 +65,7 @@
         app:spinner_divider_show="true"
         app:spinner_divider_size="1dp"
         app:spinner_item_height="50dp"
-        app:spinner_popup_animation="normal"
+        app:spinner_popup_animation="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
