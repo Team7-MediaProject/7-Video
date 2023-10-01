@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="23sp"
-        android:textColor="@color/black"
         android:text="인기동영상"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="채널"
-        android:textSize="23sp"
         android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,25 +51,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_channels" />
 
-    <com.skydoves.powerspinner.PowerSpinnerView
+    <Spinner
         android:id="@+id/category_videos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="동영상 "
-        android:textSize="23sp"
         android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
         app:spinner_arrow_gravity="end"
         app:spinner_arrow_tint="@color/red_400"
         app:spinner_divider_color="@color/grey_200"
         app:spinner_divider_show="true"
         app:spinner_divider_size="1dp"
         app:spinner_item_height="50dp"
-        app:spinner_popup_animation="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:spinner_popup_animation="dropdown" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView3"
@@ -79,5 +78,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_videos"
-        tools:listitem="@layout/category_video_item"/>
+        tools:listitem="@layout/category_video_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

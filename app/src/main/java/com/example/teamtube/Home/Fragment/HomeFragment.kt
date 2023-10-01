@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamtube.CategoryList
@@ -40,29 +43,38 @@ class HomeFragment : Fragment() {
         binding.rvMostPopular.adapter = adapter
         binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
 
-        val categoryAdapter = IconSpinnerAdapter(binding.categoryVideos)
+        val categorySpinner = binding.categoryVideos
+        // category Adapter 초기화 및 설정
+        val categoryAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            categoryItems.toList()
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_item)
+        }
+        categorySpinner.adapter = categoryAdapter
 
-        binding.categoryVideos.apply {
-            setSpinnerAdapter(categoryAdapter)
-            setItems(categoryItems)
-            setOnClickListener {
-                Log.d("spinner", "click")
-                Log.d("items", "$categoryItems")
-                setOnSpinnerItemSelectedListener<String> { _, _, _, text ->
-                    Log.d("spinner", "click")
-                    val selectedId = resItems.filter { f -> f.id == text }
-                    if (selectedId != null) {
-                        fetchVideoResults(selectedId[0].id)
-                    }
+        // 아이템 선택 event 설정
+        categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCategory = categoryItems.elementAt(position)
 
-                    adapter3 = CategoryVideoAdapter(requireContext())
-                    binding.recyclerView3.adapter = adapter3
-                    binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
-                    communicateCategoryVideo()
-                }
+                fetchVideoResults(selectedCategory)
+                communicateCategoryVideo()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                categoryItems.firstOrNull() ?: ""
             }
         }
-        //fetchVideoResults()
+        adapter3 = CategoryVideoAdapter(requireContext())
+        binding.recyclerView3.adapter = adapter3
+        binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
 
         return binding.root
     }
@@ -88,33 +100,6 @@ class HomeFragment : Fragment() {
                 }
             })
     }
-
-/*
-    private fun getCategoryList(categoryName: String): String? {
-        val categoryMap = mapOf(
-            "1" to "Film & Animation",
-            "2" to "Autos & Vehicles",
-            "10" to "Music",
-            "15" to "Pets & Animals",
-            "17" to "Sports",
-            "18" to "Short Movies",
-            "19" to "Travel & Events",
-            "20" to "Gaming",
-            "21" to "Videoblogging",
-            "22" to "People & Blogs",
-            "23" to "Comedy",
-            "24" to "Entertainment",
-            "25" to "News & Politics",
-            "27" to "Education",
-            "28" to "Science & Technology",
-            "30" to "Movies",
-            "31" to "Anime/Animation",
-            "32" to "Action/Adventure"
-        )
-        return categoryMap[categoryName]
-    }
-*/
-
 
     private fun fetchVideoResults(id: String) {
         apiCategoryService.getVideoInfo(
@@ -151,6 +136,7 @@ class HomeFragment : Fragment() {
                             resItems.add(HomeitemModel(id, title, thumbnail))
                         }*/
                     adapter.updateData(resItems)
+                    adapter3.setVideoItems(resItems)
                 } else {
                     Log.e("YouTubeApi", "Error: ${response.errorBody()}")
                 }
