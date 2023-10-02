@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
+import com.example.teamtube.ChannelData.ChannelModel
 import com.example.teamtube.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+
+    var likedItems: ArrayList<ChannelModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,5 +63,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }.attach()
+    }
+
+    fun addLikedItem(item: ChannelModel) {
+        if(!likedItems.contains(item)) {
+            likedItems.add(item)
+        }
+    }
+    fun removeLikedItem(item: ChannelModel) {
+        likedItems.remove(item)
     }
 }
