@@ -1,6 +1,7 @@
 package com.example.teamtube.Home.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,7 @@ class HomeFragmentAdapter(private val context: Context) :
 
         fun bind(item: HomeitemModel) {
             binding.scInfo.text = item.title
+            Log.d("test","item"+item.title)
 
             Glide.with(context)
                 .load(item.thumbnails)
