@@ -16,7 +16,10 @@
         android:hint="찾던지 말던지"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionSearch"/>
 
     <ImageButton
         android:id="@+id/sf_btn_search"
