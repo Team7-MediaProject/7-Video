@@ -218,10 +218,6 @@ class HomeFragment : Fragment() {
                     val videos = response.body()?.items ?: emptyList()
                     resItemsVideo.clear()
                     videos.forEach {
-                        Log.d(
-                            "selectedId",
-                            "${it.snippet.categoryId}"
-                        )
                         val id = it.snippet.categoryId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
