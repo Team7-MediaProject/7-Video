@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtube.data.Root
 import com.example.teamtube.data.YouTubeApi.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
@@ -31,10 +32,15 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //수평방향 스크롤
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        //어뎁터연결
         adapter = HomeFragmentAdapter(requireContext())
 
         binding.rvMostPopular.adapter = adapter
-        binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMostPopular.layoutManager = layoutManager
 
         fetchVideoResults()
 
