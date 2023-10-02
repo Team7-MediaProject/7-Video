@@ -9,13 +9,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.teamtube.CategoryList
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Home.Adapter.HomeFragmentAdapter
-import com.example.teamtube.Retrofit.Model.CategoryVideo
 import com.example.teamtube.Retrofit.Model.Item
-import com.example.teamtube.Retrofit.Model.Video
+import com.example.teamtube.Retrofit.Model.Root
+import com.example.teamtube.Retrofit.Model.VideoResponse
 import com.example.teamtube.Retrofit.VideoNetworkClient.apiCategoryService
+import com.example.teamtube.data.YouTubeApi
 import com.example.teamtube.databinding.FragmentHomeBinding
 import com.example.teamtube.model.HomeitemModel
 import retrofit2.Call
@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: HomeFragmentAdapter
 
-    private var category: List<CategoryList> = emptyList()
+    private var category: List<String> = emptyList()
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private var item = mutableListOf<Item>()
     override fun onCreateView(
@@ -42,9 +42,7 @@ class HomeFragment : Fragment() {
         binding.rvMostPopular.adapter = adapter
         binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
 
-        /*        adapter3 = CategoryVideoAdapter(requireContext())
-                binding.recyclerView3.adapter = adapter3
-                binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())*/
+        fetchVideoResults()
 
         val categorySpinner = binding.categoryVideos
         communicateCategoryVideo()
@@ -60,7 +58,7 @@ class HomeFragment : Fragment() {
             ) {
                 // 선택한 카테고리를 이용해 fetchVideo 해줄 것
 
-                //fetchVideoResults(selectedCategory)
+                //fetchCategoryVideoResults(selectedCategory)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -71,49 +69,75 @@ class HomeFragment : Fragment() {
 
     private fun communicateCategoryVideo() {
         apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
-            .enqueue(object : Callback<CategoryVideo> {
+            .enqueue(object : Callback<Root> {
                 override fun onResponse(
-                    call: Call<CategoryVideo>,
-                    response: Response<CategoryVideo>
+                    call: Call<Root>,
+                    response: Response<Root>
                 ) {
-                    val categoryVideo = response.body()?.root?.items ?: emptyList()
-                    if (categoryVideo.isNotEmpty()) {
-                        category = item.map {
-                            CategoryList(it.id, it.snippet.title)
-                        }
+                    if (response.isSuccessful) {
+                        val categoryVideo = response.body()?.items ?: emptyList()
+                        if (categoryVideo.isNotEmpty()) {
+                            category = categoryVideo.map { it.snippet.title }
+                            Log.d("CategoryVideo", "${category}")
+                            // category Adapter 초기화 및 설정
+                            val categoryAdapter = ArrayAdapter(
+                                requireContext(),
+                                android.R.layout.simple_spinner_item,
+                                category
+                            ).apply {
+                                setDropDownViewResource(android.R.layout.simple_spinner_item)
+                            }
+                            binding.categoryVideos.adapter = categoryAdapter
 
-                        Log.d("CategoryVideo", "${category}")
-                        // category Adapter 초기화 및 설정
-                        val categoryAdapter = ArrayAdapter(
-                            requireContext(),
-                            android.R.layout.simple_spinner_item,
-                            category
-                        ).apply {
-                            setDropDownViewResource(android.R.layout.simple_spinner_item)
                         }
-                        binding.categoryVideos.adapter = categoryAdapter
-
+                    }
+                    else {
+                        Log.e("response Error","Error : ${response.errorBody()}")
                     }
                 }
 
-                override fun onFailure(call: Call<CategoryVideo>, t: Throwable) {
+                override fun onFailure(call: Call<Root>, t: Throwable) {
                     Log.e("CategoryVideo", "Error : ${t.message}")
                 }
+
             })
-        /*val respnose = apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
-        item = respnose.root.items
-
-        category = item.map {
-            CategoryList(it.id, it.snippet.title)
-        }
-
-        handler.post {
-
-        }*/
-
     }
 
-    private fun fetchVideoResults(id: String) {
+    private fun fetchVideoResults() {
+        YouTubeApi.apiService.listVideos(
+            part = "snippet,contentDetails",
+            chart = "mostPopular",
+            maxResults = 10,
+            regionCode = "KR",
+            apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
+        ).enqueue(object : Callback<com.example.teamtube.data.Root> {
+            override fun onResponse(
+                call: Call<com.example.teamtube.data.Root>,
+                response: Response<com.example.teamtube.data.Root>
+            ) {
+                if (response.isSuccessful) {
+                    val videos = response.body()?.items ?: emptyList()
+                    resItems.clear()
+                    videos.forEach {
+                        Log.d("YouTubeApi", "Video ID: ${it.id}, Title: ${it.snippet.title}")
+                        val id = it.id
+                        val title = it.snippet.title
+                        val thumbnail = it.snippet.thumbnails.high.url
+                        resItems.add(HomeitemModel(id, title, thumbnail))
+                    }
+                    adapter.updateData(resItems)
+                } else {
+                    Log.e("YouTubeApi", "Error: ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<com.example.teamtube.data.Root>, t: Throwable) {
+                Log.e("YouTubeApi", "Error: ${t.message}")
+            }
+        })
+    }
+
+    private fun fetchCategoryVideoResults(id : String) {
         apiCategoryService.getVideoInfo(
             part = "snippet,contentDetails",
             chart = "mostPopular",
@@ -122,16 +146,19 @@ class HomeFragment : Fragment() {
             regionCode = "KR",
             apiKey = Constrants.API_KEY
             //apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
-        ).enqueue(object : Callback<Video> {
+        ).enqueue(object : Callback<VideoResponse> {
             override fun onResponse(
-                call: Call<Video>,
-                response: Response<Video>
+                call: Call<VideoResponse>,
+                response: Response<VideoResponse>
             ) {
                 if (response.isSuccessful) {
-                    val videos = response.body()?.response?.items ?: emptyList()
+                    val videos = response.body()?.items ?: emptyList()
                     resItems.clear()
                     videos.forEach {
-                        Log.d("YouTubeApi", "Video ID: ${it.id}, Title: ${it.snippet.title}")
+                        Log.d(
+                            "YouTubeApi",
+                            "Video ID: ${it.id}, Title: ${it.snippet.title}"
+                        )
                         val id = it.snippet.categoryId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
@@ -154,7 +181,7 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<Video>, t: Throwable) {
+            override fun onFailure(call: Call<VideoResponse>, t: Throwable) {
                 Log.e("YouTubeApi", "Error: ${t.message}")
             }
         })

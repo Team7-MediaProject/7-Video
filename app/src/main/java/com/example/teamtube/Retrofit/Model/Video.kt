@@ -1,6 +1,5 @@
 package com.example.teamtube.Retrofit.Model
 
-data class Video(val response: VideoResponse, val item: VideoItem)
 data class VideoResponse(
     val kind: String,
     val etag: String,

@@ -1,8 +1,7 @@
 package com.example.teamtube.Retrofit
 
-import com.example.teamtube.Retrofit.Model.CategoryVideo
 import com.example.teamtube.Retrofit.Model.Root
-import com.example.teamtube.Retrofit.Model.Video
+import com.example.teamtube.Retrofit.Model.VideoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,7 +14,7 @@ interface VideoInterface {
             @Query("part") part: String,
             @Query("regionCode") regionCode: String,
             @Query("key") apiKey: String
-    ) : Call<CategoryVideo>
+    ) : Call<Root>
 
     @GET("v3/videos")
 
@@ -27,5 +26,5 @@ interface VideoInterface {
         @Query("videoCategoryId") videoCategoryId : String,
         @Query("regionCode") regionCode: String,
         @Query("key") apiKey : String
-    ) : Call<Video>
+    ) : Call<VideoResponse>
 }
