@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         //Adapter 연결
         binding.vpViewpagerMain.apply {
             adapter = viewPager2Adatper
+            isUserInputEnabled = false
 
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
