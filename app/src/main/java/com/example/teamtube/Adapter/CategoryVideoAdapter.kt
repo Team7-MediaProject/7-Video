@@ -1,13 +1,13 @@
 package com.example.teamtube.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.CategoryVideoData.CategoryList
 import com.example.teamtube.databinding.CategoryVideoItemBinding
-import com.example.teamtube.model.HomeitemModel
 
 class CategoryVideoAdapter(private val mContext: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -46,6 +46,7 @@ class CategoryVideoAdapter(private val mContext: Context) :
     fun setVideoItems(videoItem: List<CategoryList>) {
         mItems.clear()
         mItems.addAll(videoItem)
+        Log.d("videoItems", "$mItems")
         notifyDataSetChanged()
     }
 }
