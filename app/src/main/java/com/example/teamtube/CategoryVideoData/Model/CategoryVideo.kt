@@ -2,6 +2,7 @@ package com.example.teamtube.CategoryVideoData.Model
 
 import com.google.gson.annotations.SerializedName
 
+data class CategoryList(val categoryId: String, val title: String)
 data class Root(
     @SerializedName("kind")
     val kind: String,
