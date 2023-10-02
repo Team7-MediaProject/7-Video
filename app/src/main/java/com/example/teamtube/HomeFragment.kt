@@ -127,5 +127,5 @@ class HomeFragment : Fragment() {
                 Log.e("API", "onFailure: ${t.message}")
             }
         })
-    }
+    }//커밋용
 }
