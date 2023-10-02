@@ -43,6 +43,10 @@ class HomeFragment : Fragment() {
         binding.rvMostPopular.adapter = adapter
         binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
 
+        adapter3 = CategoryVideoAdapter(requireContext())
+        binding.recyclerView3.adapter = adapter3
+        binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
+
         val categorySpinner = binding.categoryVideos
         // category Adapter 초기화 및 설정
         val categoryAdapter = ArrayAdapter(
@@ -72,9 +76,7 @@ class HomeFragment : Fragment() {
                 categoryItems.firstOrNull() ?: ""
             }
         }
-        adapter3 = CategoryVideoAdapter(requireContext())
-        binding.recyclerView3.adapter = adapter3
-        binding.recyclerView3.layoutManager = LinearLayoutManager(requireContext())
+
 
         return binding.root
     }
