@@ -1,7 +1,7 @@
-package com.example.teamtube.Retrofit
+package com.example.teamtube.CategoryVideoData
 
-import com.example.teamtube.Retrofit.Model.Root
-import com.example.teamtube.Retrofit.Model.VideoResponse
+import com.example.teamtube.CategoryVideoData.Model.Root
+import com.example.teamtube.CategoryVideoData.Model.VideoResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

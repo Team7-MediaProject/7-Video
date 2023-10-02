@@ -1,4 +1,4 @@
-package com.example.teamtube
+package com.example.teamtube.CategoryVideoData
 
 /*
 class CategoryList {
@@ -32,5 +32,6 @@ class CategoryList {
 
 data class CategoryList(
     val id : String,
-    val categoryTitle : String
+    val categoryTitle : String,
+    val image : String
 )

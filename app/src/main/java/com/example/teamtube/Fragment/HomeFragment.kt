@@ -9,16 +9,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.teamtube.Adapter.CategoryVideoAdapter
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
+import com.example.teamtube.CategoryVideoData.CategoryList
 import com.example.teamtube.ChannelData.ChannelApi
 import com.example.teamtube.ChannelData.ChannelFragmentAdapter
 import com.example.teamtube.ChannelData.ChannelModel
-import com.example.teamtube.Retrofit.Model.Root
-import com.example.teamtube.Retrofit.Model.VideoResponse
-import com.example.teamtube.Retrofit.VideoNetworkClient.apiCategoryService
-import com.example.teamtube.data.YouTubeApi
+import com.example.teamtube.MostPopularData.YouTubeApi
+import com.example.teamtube.CategoryVideoData.Model.Root
+import com.example.teamtube.CategoryVideoData.Model.VideoResponse
+import com.example.teamtube.CategoryVideoData.VideoNetworkClient.apiCategoryService
 import com.example.teamtube.databinding.FragmentHomeBinding
 import com.example.teamtube.model.HomeitemModel
 import retrofit2.Call
@@ -29,13 +30,19 @@ class HomeFragment : Fragment() {
     /*private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!*/
 
+    private lateinit var adapterMost: HomeFragmentAdapter
     private lateinit var adapterChannel: ChannelFragmentAdapter
+
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: HomeFragmentAdapter
+    private lateinit var videoAdapter: CategoryVideoAdapter
 
     private var category: List<String> = emptyList()
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
+    private val resItemsVideo: MutableList<CategoryList> = mutableListOf()
+
+    private lateinit var layoutManagerMost: LinearLayoutManager
+    private lateinit var layoutManagerChannel: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,27 +51,31 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        //수평방향 스크롤
+        layoutManagerMost = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        layoutManagerChannel = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        //어댑터연결
-        adapter = HomeFragmentAdapter(requireContext())
-        val recyclerView: RecyclerView = binding.rvChannel
+        //어뎁터연결
+        adapterMost = HomeFragmentAdapter(requireContext())
         adapterChannel = ChannelFragmentAdapter(requireContext())
-        recyclerView.adapter = adapterChannel
 
+        //채널
+        binding.rvChannel.layoutManager = layoutManagerChannel
         binding.rvChannel.adapter = adapterChannel
-        binding.rvChannel.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.rvMostPopular.adapter = adapter
-        binding.rvMostPopular.layoutManager = layoutManager
+        //인기동영상
+        binding.rvMostPopular.layoutManager = layoutManagerMost
+        binding.rvMostPopular.adapter = adapterMost
+
+        videoAdapter = CategoryVideoAdapter(requireContext())
+        binding.rvVideos.adapter = videoAdapter
+        binding.rvVideos.layoutManager = LinearLayoutManager(requireContext())
 
         fetchVideoResults()
         fetchChannelResult()
 
         val categorySpinner = binding.categoryVideos
         communicateCategoryVideo()
-        Log.d("Calling", "communicateCategoryVideo")
 
         // 아이템 선택 event 설정
         categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -91,10 +102,10 @@ class HomeFragment : Fragment() {
             maxResults = 10,
             regionCode = "KR",
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
-        ).enqueue(object : Callback<com.example.teamtube.data.Root> {
+        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
             override fun onResponse(
-                call: Call<com.example.teamtube.data.Root>,
-                response: Response<com.example.teamtube.data.Root>
+                call: Call<com.example.teamtube.MostPopularData.Root>,
+                response: Response<com.example.teamtube.MostPopularData.Root>
             ) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items ?: emptyList()
@@ -106,13 +117,16 @@ class HomeFragment : Fragment() {
                         val thumbnail = it.snippet.thumbnails.high.url
                         resItems.add(HomeitemModel(id, title, thumbnail))
                     }
-                    adapter.updateData(resItems)
+                    adapterMost.updateData(resItems)
                 } else {
                     Log.e("YouTubeApi", "Error: ${response.errorBody()}")
                 }
             }
 
-            override fun onFailure(call: Call<com.example.teamtube.data.Root>, t: Throwable) {
+            override fun onFailure(
+                call: Call<com.example.teamtube.MostPopularData.Root>,
+                t: Throwable
+            ) {
                 Log.e("YouTubeApi", "Error: ${t.message}")
             }
         })
@@ -123,12 +137,9 @@ class HomeFragment : Fragment() {
             part = "snippet",
             maxResults = 10,
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
-            id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
-        ).enqueue(object : Callback<com.example.teamtube.data.Root> {
-            override fun onResponse(
-                call: Call<com.example.teamtube.data.Root>,
-                response: Response<com.example.teamtube.data.Root>
-            ) {
+            id = "UC_x5XG1OV2P6uZZ5FSM9Ttw, UCU_hKD03cUTCvnOJpEmKvCg, UCUj6rrhMTR9pipbAWBAMvUQ, UCcdlIcleb4oIK6of1ugSJ7w, UCyn-K7rZLXjGl7VXGweIlcA, UCtm_QoN2SIxwCE-59shX7Qg, UCPWFxcwPliEBMwJjmeFIDIg, UCiBr0bK06imaMbLc8sAEz0A, UC78PMQprrZTbU0IlMDsYZPw, UCL3gnarNIeI_M0cFxjNYdAA"
+        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
+            override fun onResponse(call: Call<com.example.teamtube.MostPopularData.Root>, response: Response<com.example.teamtube.MostPopularData.Root>) {
                 if (response.isSuccessful) {
                     val channelData = response.body()
                     channelData?.items?.let { items ->
@@ -148,7 +159,7 @@ class HomeFragment : Fragment() {
                 adapterChannel.notifyDataSetChanged()
             }
 
-            override fun onFailure(call: Call<com.example.teamtube.data.Root>, t: Throwable) {
+            override fun onFailure(call: Call<com.example.teamtube.MostPopularData.Root>, t: Throwable) {
                 Log.e("API", "onFailure: ${t.message}")
             }
         })
@@ -175,7 +186,6 @@ class HomeFragment : Fragment() {
                                 setDropDownViewResource(android.R.layout.simple_spinner_item)
                             }
                             binding.categoryVideos.adapter = categoryAdapter
-
                         }
                     } else {
                         Log.e("response Error", "Error : ${response.errorBody()}")
@@ -190,12 +200,12 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun fetchCategoryVideoResults(id: String) {
+    private fun fetchCategoryVideoResults(selectedId: String) {
         apiCategoryService.getVideoInfo(
             part = "snippet,contentDetails",
             chart = "mostPopular",
             maxResults = 10,
-            videoCategoryId = id,
+            videoCategoryId = selectedId,
             regionCode = "KR",
             apiKey = Constrants.API_KEY
             //apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
@@ -206,19 +216,18 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items ?: emptyList()
-                    resItems.clear()
+                    resItemsVideo.clear()
                     videos.forEach {
                         Log.d(
-                            "YouTubeApi",
-                            "Video ID: ${it.id}, Title: ${it.snippet.title}"
+                            "selectedId",
+                            "${it.snippet.categoryId}"
                         )
                         val id = it.snippet.categoryId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
-                        resItems.add(HomeitemModel(id, title, thumbnail))
+                        resItemsVideo.add(CategoryList(id, title, thumbnail))
                     }
-                    adapter.updateData(resItems)
-                    /*adapter3.setVideoItems(resItems)*/
+                    videoAdapter.setVideoItems(resItemsVideo)
                 } else {
                     Log.e("YouTubeApi", "Error: ${response.errorBody()}")
                 }

@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.teamtube.Retrofit.Model.Item
+import com.example.teamtube.CategoryVideoData.CategoryList
 import com.example.teamtube.databinding.CategoryVideoItemBinding
 import com.example.teamtube.model.HomeitemModel
 
 class CategoryVideoAdapter(private val mContext: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var binding: CategoryVideoItemBinding
-    private val mItems = mutableListOf<HomeitemModel>()
+    private val mItems = mutableListOf<CategoryList>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         binding = CategoryVideoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,28 +31,19 @@ class CategoryVideoAdapter(private val mContext: Context) :
 
     inner class CategoryVideoHolder(private val binding: CategoryVideoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HomeitemModel) {
+        fun bind(item: CategoryList) {
             binding.apply {
-                homeCategoryVideoTitle.text = item.title
+                homeCategoryVideoTitle.text = item.categoryTitle
             }
 
             Glide.with(mContext)
-                .load(item.thumbnails)
+                .load(item.image)
                 .into(binding.homeCategoryVideoImage)
-
-            /*val videoItems = item.snippet.thumbnails
-            if (videoItems != null) {
-                val thumnailUrl = videoItems.high
-                Glide.with(mContext)
-                    .load(thumnailUrl)
-                    .into(video_image)
-            }*/
-            notifyDataSetChanged()
         }
     }
 
     // recyclerview 갱신 시 필요
-    fun setVideoItems(videoItem: List<HomeitemModel>) {
+    fun setVideoItems(videoItem: List<CategoryList>) {
         mItems.clear()
         mItems.addAll(videoItem)
         notifyDataSetChanged()
