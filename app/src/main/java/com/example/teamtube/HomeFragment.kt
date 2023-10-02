@@ -39,6 +39,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        //수평방향 스크롤
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        //어뎁터연결
         adapter = HomeFragmentAdapter(requireContext())
         val recyclerView: RecyclerView = binding.rvChannel
         adapterChannel = ChannelFragmentAdapter(requireContext())
@@ -48,7 +53,7 @@ class HomeFragment : Fragment() {
         binding.rvChannel.layoutManager = LinearLayoutManager(requireContext())
 
         binding.rvMostPopular.adapter = adapter
-        binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMostPopular.layoutManager = layoutManager
 
         fetchVideoResults()
         fetchChannelResult()
