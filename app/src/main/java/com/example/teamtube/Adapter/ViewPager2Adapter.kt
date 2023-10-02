@@ -1,4 +1,4 @@
-package com.example.teamtube
+package com.example.teamtube.Adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

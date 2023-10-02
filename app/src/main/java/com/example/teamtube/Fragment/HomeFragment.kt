@@ -1,4 +1,4 @@
-package com.example.teamtube.Home.Fragment
+package com.example.teamtube.Fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtube.Constrant.Constrants
-import com.example.teamtube.Home.Adapter.HomeFragmentAdapter
-import com.example.teamtube.Retrofit.Model.Item
+import com.example.teamtube.Adapter.HomeFragmentAdapter
+import com.example.teamtube.ChannelData.ChannelApi
+import com.example.teamtube.ChannelData.ChannelFragmentAdapter
+import com.example.teamtube.ChannelData.ChannelModel
 import com.example.teamtube.Retrofit.Model.Root
 import com.example.teamtube.Retrofit.Model.VideoResponse
 import com.example.teamtube.Retrofit.VideoNetworkClient.apiCategoryService
@@ -25,11 +28,15 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
     /*private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!*/
+
+    private lateinit var adapterChannel: ChannelFragmentAdapter
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: HomeFragmentAdapter
 
     private var category: List<String> = emptyList()
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
+    private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,11 +44,23 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        //어댑터연결
         adapter = HomeFragmentAdapter(requireContext())
+        val recyclerView: RecyclerView = binding.rvChannel
+        adapterChannel = ChannelFragmentAdapter(requireContext())
+        recyclerView.adapter = adapterChannel
+
+        binding.rvChannel.adapter = adapterChannel
+        binding.rvChannel.layoutManager = LinearLayoutManager(requireContext())
+
         binding.rvMostPopular.adapter = adapter
-        binding.rvMostPopular.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMostPopular.layoutManager = layoutManager
 
         fetchVideoResults()
+        fetchChannelResult()
 
         val categorySpinner = binding.categoryVideos
         communicateCategoryVideo()
@@ -63,46 +82,6 @@ class HomeFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun communicateCategoryVideo() {
-        apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
-            .enqueue(object : Callback<Root> {
-                override fun onResponse(
-                    call: Call<Root>,
-                    response: Response<Root>
-                ) {
-                    if (response.isSuccessful) {
-                        val categoryVideo = response.body()?.items ?: emptyList()
-                        if (categoryVideo.isNotEmpty()) {
-                            category = categoryVideo.map { it.snippet.title }
-                            Log.d("CategoryVideo", "${category}")
-                            // category Adapter 초기화 및 설정
-                            val categoryAdapter = ArrayAdapter(
-                                requireContext(),
-                                android.R.layout.simple_spinner_item,
-                                category
-                            ).apply {
-                                setDropDownViewResource(android.R.layout.simple_spinner_item)
-                            }
-                            binding.categoryVideos.adapter = categoryAdapter
-
-                        }
-                    }
-                    else {
-                        Log.e("response Error","Error : ${response.errorBody()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<Root>, t: Throwable) {
-                    Log.e("CategoryVideo", "Error : ${t.message}")
-                }
-
-            })
     }
 
     private fun fetchVideoResults() {
@@ -139,7 +118,79 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun fetchCategoryVideoResults(id : String) {
+    private fun fetchChannelResult() {
+        ChannelApi.apiService.listChannels(
+            part = "snippet",
+            maxResults = 10,
+            apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
+            id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+        ).enqueue(object : Callback<com.example.teamtube.data.Root> {
+            override fun onResponse(
+                call: Call<com.example.teamtube.data.Root>,
+                response: Response<com.example.teamtube.data.Root>
+            ) {
+                if (response.isSuccessful) {
+                    val channelData = response.body()
+                    channelData?.items?.let { items ->
+                        for (item in items) {
+                            val thumbnails = item.snippet.thumbnails.high.url
+                            val id = item.id
+                            val title = item.snippet.title
+                            resItemsChannel.add(ChannelModel(thumbnails, id, title))
+                            Log.d("Channel", "Thunmbnails: $thumbnails, ID: $id")
+                        }
+                    }
+                    adapterChannel.updateData(resItemsChannel)
+                } else {
+                    Log.e("API", "Error: ${response.code()}")
+                }
+                adapterChannel.itemsChannel = resItemsChannel
+                adapterChannel.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<com.example.teamtube.data.Root>, t: Throwable) {
+                Log.e("API", "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    private fun communicateCategoryVideo() {
+        apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
+            .enqueue(object : Callback<Root> {
+                override fun onResponse(
+                    call: Call<Root>,
+                    response: Response<Root>
+                ) {
+                    if (response.isSuccessful) {
+                        val categoryVideo = response.body()?.items ?: emptyList()
+                        if (categoryVideo.isNotEmpty()) {
+                            category = categoryVideo.map { it.snippet.title }
+                            Log.d("CategoryVideo", "${category}")
+                            // category Adapter 초기화 및 설정
+                            val categoryAdapter = ArrayAdapter(
+                                requireContext(),
+                                android.R.layout.simple_spinner_item,
+                                category
+                            ).apply {
+                                setDropDownViewResource(android.R.layout.simple_spinner_item)
+                            }
+                            binding.categoryVideos.adapter = categoryAdapter
+
+                        }
+                    } else {
+                        Log.e("response Error", "Error : ${response.errorBody()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Root>, t: Throwable) {
+                    Log.e("CategoryVideo", "Error : ${t.message}")
+                }
+
+            })
+    }
+
+
+    private fun fetchCategoryVideoResults(id: String) {
         apiCategoryService.getVideoInfo(
             part = "snippet,contentDetails",
             chart = "mostPopular",
@@ -179,4 +230,3 @@ class HomeFragment : Fragment() {
         })
     }
 }
-

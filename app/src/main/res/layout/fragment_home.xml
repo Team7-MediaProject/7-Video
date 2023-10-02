@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home.Fragment.HomeFragment">
+    tools:context=".Fragment.HomeFragment">
 
 
     <TextView
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/rv_channel"
         app:spinner_arrow_gravity="end"
         app:spinner_arrow_tint="@color/red_400"
         app:spinner_divider_color="@color/grey_200"
@@ -72,7 +72,7 @@
         app:spinner_popup_animation="dropdown" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
+        android:id="@+id/rv_videos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
