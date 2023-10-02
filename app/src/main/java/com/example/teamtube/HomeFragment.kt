@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtube.ChannelData.ChannelApi
-import com.example.teamtube.data.Root
-import com.example.teamtube.data.YouTubeApi.apiService
-import com.example.teamtube.ChannelData.ChannelApi.apiService
+import com.example.teamtube.MostPopularData.Root
 import com.example.teamtube.ChannelData.ChannelFragmentAdapter
 import com.example.teamtube.ChannelData.ChannelModel
-import com.example.teamtube.data.YouTubeApi
+import com.example.teamtube.MostPopularData.YouTubeApi
 import com.example.teamtube.databinding.FragmentHomeBinding
 import com.example.teamtube.model.HomeitemModel
 import retrofit2.Call
@@ -25,11 +23,14 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: HomeFragmentAdapter
+    private lateinit var adapterMost: HomeFragmentAdapter
     private lateinit var adapterChannel: ChannelFragmentAdapter
 
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
+
+    private lateinit var layoutManagerMost: LinearLayoutManager
+    private lateinit var layoutManagerChannel: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,20 +41,20 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
         //수평방향 스크롤
-        val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManagerMost = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        layoutManagerChannel = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         //어뎁터연결
-        adapter = HomeFragmentAdapter(requireContext())
-        val recyclerView: RecyclerView = binding.rvChannel
+        adapterMost = HomeFragmentAdapter(requireContext())
         adapterChannel = ChannelFragmentAdapter(requireContext())
-        recyclerView.adapter = adapterChannel
 
+        //채널
+        binding.rvChannel.layoutManager = layoutManagerChannel
         binding.rvChannel.adapter = adapterChannel
-        binding.rvChannel.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.rvMostPopular.adapter = adapter
-        binding.rvMostPopular.layoutManager = layoutManager
+        //인기동영상
+        binding.rvMostPopular.layoutManager = layoutManagerMost
+        binding.rvMostPopular.adapter = adapterMost
 
         fetchVideoResults()
         fetchChannelResult()
@@ -83,7 +84,7 @@ class HomeFragment : Fragment() {
                         val thumbnail = it.snippet.thumbnails.high.url
                         resItems.add(HomeitemModel(id, title, thumbnail))
                     }
-                    adapter.updateData(resItems)
+                    adapterMost.updateData(resItems)
                 } else {
                     Log.e("YouTubeApi", "Error: ${response.errorBody()}")
                 }
@@ -100,7 +101,7 @@ class HomeFragment : Fragment() {
             part = "snippet",
             maxResults = 10,
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
-            id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+            id = "UC_x5XG1OV2P6uZZ5FSM9Ttw, UCU_hKD03cUTCvnOJpEmKvCg, UCUj6rrhMTR9pipbAWBAMvUQ, UCcdlIcleb4oIK6of1ugSJ7w, UCyn-K7rZLXjGl7VXGweIlcA, UCtm_QoN2SIxwCE-59shX7Qg, UCPWFxcwPliEBMwJjmeFIDIg, UCiBr0bK06imaMbLc8sAEz0A, UC78PMQprrZTbU0IlMDsYZPw, UCL3gnarNIeI_M0cFxjNYdAA"
         ).enqueue(object : Callback<Root> {
             override fun onResponse(call: Call<Root>, response: Response<Root>) {
                 if (response.isSuccessful) {
