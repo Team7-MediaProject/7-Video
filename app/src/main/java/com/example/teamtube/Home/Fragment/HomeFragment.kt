@@ -30,7 +30,6 @@ class HomeFragment : Fragment() {
 
     private var category: List<String> = emptyList()
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
-    private var item = mutableListOf<Item>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,14 +56,17 @@ class HomeFragment : Fragment() {
                 id: Long
             ) {
                 // 선택한 카테고리를 이용해 fetchVideo 해줄 것
-
-                //fetchCategoryVideoResults(selectedCategory)
+                fetchCategoryVideoResults(position.toString())
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun communicateCategoryVideo() {
@@ -164,16 +166,6 @@ class HomeFragment : Fragment() {
                         val thumbnail = it.snippet.thumbnails.high.url
                         resItems.add(HomeitemModel(id, title, thumbnail))
                     }
-                    /*if (response.isSuccessful) {
-                        val videos = response.body()?.items ?: emptyList()
-                        resItems.clear()
-                        videos.forEach {
-                            Log.d("YouTubeApi", "Video ID: ${it.id}, Title: ${it.snippet.title}")
-                            val id = it.id
-                            val title = it.snippet.title
-                            val thumbnail = it.snippet.thumbnails.high.url
-                            resItems.add(HomeitemModel(id, title, thumbnail))
-                        }*/
                     adapter.updateData(resItems)
                     /*adapter3.setVideoItems(resItems)*/
                 } else {
