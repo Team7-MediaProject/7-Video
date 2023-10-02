@@ -1,5 +1,6 @@
 package com.example.teamtube
 
+/*
 class CategoryList {
     val categoryList = listOf(
         "애니메이션",
@@ -27,4 +28,9 @@ class CategoryList {
         "28" to "과학기술",
         "30" to "영화"
     )
-}
+}*/
+
+data class CategoryList(
+    val id : String,
+    val categoryTitle : String
+)
