@@ -52,15 +52,15 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     tab.text = "Home"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_home, null)
+                    tab.icon = resources.getDrawable(R.drawable.red_ghost, null)
                 }
                 1 -> {
                     tab.text = "Search"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_search, null)
+                    tab.icon = resources.getDrawable(R.drawable.yellow_ghost, null)
                 }
                 2 -> {
                     tab.text = "My Video"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_myvideo, null)
+                    tab.icon = resources.getDrawable(R.drawable.blue_ghost, null)
                 }
             }
         }.attach()

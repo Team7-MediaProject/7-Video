@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Fragment.HomeFragment">
 
     <androidx.cardview.widget.CardView
@@ -30,9 +31,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="7렐레8렐레"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/dunggeunmo"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:text="좋아요 표시한 채널"
+        android:textColor="@color/white"
         android:fontFamily="@font/dunggeunmo"
-        android:textSize="20sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_text_view" />
@@ -71,8 +74,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="좋아요 표시한 동영상"
+        android:textColor="@color/white"
         android:fontFamily="@font/dunggeunmo"
-        android:textSize="20sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/liked_channel_recycler_view" />
