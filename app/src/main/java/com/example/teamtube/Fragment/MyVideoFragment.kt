@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.teamtube.Adapter.MyVideoFragmentAdapter
-import com.example.teamtube.ChannelData.ChannelModel
 import com.example.teamtube.MainActivity
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.FragmentMyVideoBinding
 
 class MyVideoFragment : Fragment() {

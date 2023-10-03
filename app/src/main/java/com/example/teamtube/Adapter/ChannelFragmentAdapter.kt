@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.teamtube.MainActivity
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.CategoryChannelItemBinding
-import com.example.teamtube.model.HomeitemModel
 
 class ChannelFragmentAdapter (private val mContext: Context) :
     RecyclerView.Adapter<ChannelFragmentAdapter.ChannelViewHolder>() {
@@ -38,7 +37,7 @@ class ChannelFragmentAdapter (private val mContext: Context) :
     }
 
     inner class ChannelViewHolder(private val binding: CategoryChannelItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bindChannel(item: ChannelModel) {
             val img_channel : ImageView = binding.imgChannel
             val title_channel : TextView = binding.titleChannel

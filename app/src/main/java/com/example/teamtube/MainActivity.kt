@@ -9,7 +9,7 @@ import com.example.teamtube.Adapter.ViewPager2Adapter
 import com.example.teamtube.Fragment.HomeFragment
 import com.example.teamtube.Fragment.MyVideoFragment
 import com.example.teamtube.Fragment.SearchFragment
-import com.example.teamtube.ChannelData.ChannelModel
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -72,11 +72,13 @@ class MainActivity : AppCompatActivity() {
     fun addLikedItem(item: ChannelModel) {
         if(!likedItems.contains(item)) {
             likedItems.add(item)
-            Log.d("LikedList", "List: $likedItems")
+            val titleList = likedItems.map { it.title }
+            Log.d("LikedList", "List: $titleList")
         }
     }
     fun removeLikedItem(item: ChannelModel) {
         likedItems.remove(item)
-        Log.d("LikedList", "List: $likedItems")
+        val titleList = likedItems.map { it.title }
+        Log.d("LikedList", "List: $titleList")
     }
 }
