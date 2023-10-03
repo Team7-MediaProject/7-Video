@@ -2,6 +2,7 @@ package com.example.teamtube.Fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,12 +32,12 @@ class MyVideoFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         val mainActivity = activity as MainActivity
         likedItems = mainActivity.likedItems
 
         adapter = MyVideoFragmentAdapter(mContext).apply {
-            itemsChannel = likedItems as ArrayList<ChannelModel>
+            itemsChannel = likedItems.toMutableList()
         }
 
         _binding = FragmentMyVideoBinding.inflate(inflater, container, false).apply {
