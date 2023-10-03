@@ -5,3 +5,4 @@ data class CategoryList(
     val categoryTitle : String,
     val image : String
 )
+

@@ -13,6 +13,7 @@ import com.example.teamtube.Adapter.CategoryVideoAdapter
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
 import com.example.teamtube.Adapter.ChannelFragmentAdapter
+import com.example.teamtube.Model.CategoryDataList
 import com.example.teamtube.Model.CategoryList
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root
@@ -38,27 +39,9 @@ class HomeFragment : Fragment() {
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
     private val resItemsVideo: MutableList<CategoryList> = mutableListOf()
-
+    private val categoryList = CategoryDataList().categoryList
     private lateinit var layoutManagerMost: LinearLayoutManager
     private lateinit var layoutManagerChannel: LinearLayoutManager
-
-    val categoryList: List<com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList> = listOf(
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
-            "1",
-            "Film & Animation"
-        ),
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
-            "2",
-            "Autos & Vehicles"
-        ),
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("10", "Music"),
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
-            "15",
-            "Pets & Animals"
-        ),
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("17", "Sports"),
-        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("20", "Gaming"),
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
