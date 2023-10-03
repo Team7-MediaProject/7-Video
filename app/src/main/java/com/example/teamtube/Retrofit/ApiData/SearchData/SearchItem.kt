@@ -1,4 +1,4 @@
-package com.example.teamtube.SearchFragmentData
+package com.example.teamtube.Retrofit.ApiData.SearchData
 
 data class SearchItem(
     val kind: String,

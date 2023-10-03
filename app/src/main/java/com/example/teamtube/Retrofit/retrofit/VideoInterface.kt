@@ -1,8 +1,8 @@
 package com.example.teamtube.Retrofit.retrofit
 
-import com.example.teamtube.Retrofit.ApiModel.Root
-import com.example.teamtube.Retrofit.ApiModel.VideoResponse
-import com.example.teamtube.SearchFragmentData.SearchItem
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.VideoResponse
+import com.example.teamtube.Retrofit.ApiData.SearchData.SearchItem
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,7 +15,7 @@ interface VideoInterface {
         @Query("chart") chart: String = "mostPopular",
         @Query("maxResults") maxResults: Int = 10,
         @Query("key") apikey: String
-    ): Call<com.example.teamtube.MostPopularData.Root>
+    ): Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>
 
     @GET("v3/channels")
     fun listChannels(
@@ -23,7 +23,7 @@ interface VideoInterface {
         @Query("maxResults") maxResults: Int,
         @Query("key") apikey: String,
         @Query("id") id: String
-    ): Call<com.example.teamtube.MostPopularData.Root>
+    ): Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>
 
     @GET("v3/videoCategories")
     fun getCategoryVideoInfo(

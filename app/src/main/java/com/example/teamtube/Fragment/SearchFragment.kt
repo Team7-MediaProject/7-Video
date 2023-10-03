@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.teamtube.Adapter.SearchFragmentAdapter
 import com.example.teamtube.Model.SearchData
 import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient
-import com.example.teamtube.SearchFragmentData.SearchItem
+import com.example.teamtube.Retrofit.ApiData.SearchData.SearchItem
 import com.example.teamtube.databinding.FragmentSearchBinding
 import retrofit2.Call
 import retrofit2.Callback

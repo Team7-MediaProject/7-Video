@@ -15,8 +15,8 @@ import com.example.teamtube.Adapter.HomeFragmentAdapter
 import com.example.teamtube.Adapter.ChannelFragmentAdapter
 import com.example.teamtube.Model.CategoryList
 import com.example.teamtube.Model.ChannelModel
-import com.example.teamtube.Retrofit.ApiModel.Root
-import com.example.teamtube.Retrofit.ApiModel.VideoResponse
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.VideoResponse
 import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
 import com.example.teamtube.Model.HomeitemModel
@@ -42,13 +42,22 @@ class HomeFragment : Fragment() {
     private lateinit var layoutManagerMost: LinearLayoutManager
     private lateinit var layoutManagerChannel: LinearLayoutManager
 
-    val categoryList: List<com.example.teamtube.Retrofit.ApiModel.CategoryList> = listOf(
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("1", "Film & Animation"),
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("2", "Autos & Vehicles"),
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("10", "Music"),
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("15", "Pets & Animals"),
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("17", "Sports"),
-        com.example.teamtube.Retrofit.ApiModel.CategoryList("20", "Gaming"),
+    val categoryList: List<com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList> = listOf(
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
+            "1",
+            "Film & Animation"
+        ),
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
+            "2",
+            "Autos & Vehicles"
+        ),
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("10", "Music"),
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList(
+            "15",
+            "Pets & Animals"
+        ),
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("17", "Sports"),
+        com.example.teamtube.Retrofit.ApiData.CategoryVideoData.CategoryList("20", "Gaming"),
     )
 
     override fun onCreateView(
@@ -111,10 +120,10 @@ class HomeFragment : Fragment() {
             maxResults = 10,
             regionCode = "KR",
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
-        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
+        ).enqueue(object : Callback<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root> {
             override fun onResponse(
-                call: Call<com.example.teamtube.MostPopularData.Root>,
-                response: Response<com.example.teamtube.MostPopularData.Root>
+                call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>,
+                response: Response<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>
             ) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items ?: emptyList()
@@ -133,7 +142,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(
-                call: Call<com.example.teamtube.MostPopularData.Root>,
+                call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>,
                 t: Throwable
             ) {
                 Log.e("YouTubeApi", "Error: ${t.message}")
@@ -147,8 +156,8 @@ class HomeFragment : Fragment() {
             maxResults = 10,
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
             id = "UC_x5XG1OV2P6uZZ5FSM9Ttw, UCU_hKD03cUTCvnOJpEmKvCg, UCUj6rrhMTR9pipbAWBAMvUQ, UCcdlIcleb4oIK6of1ugSJ7w, UCyn-K7rZLXjGl7VXGweIlcA, UCtm_QoN2SIxwCE-59shX7Qg, UCPWFxcwPliEBMwJjmeFIDIg, UCiBr0bK06imaMbLc8sAEz0A, UC78PMQprrZTbU0IlMDsYZPw, UCL3gnarNIeI_M0cFxjNYdAA"
-        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
-            override fun onResponse(call: Call<com.example.teamtube.MostPopularData.Root>, response: Response<com.example.teamtube.MostPopularData.Root>) {
+        ).enqueue(object : Callback<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root> {
+            override fun onResponse(call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>, response: Response<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>) {
                 if (response.isSuccessful) {
                     val channelData = response.body()
                     channelData?.items?.let { items ->
@@ -168,7 +177,7 @@ class HomeFragment : Fragment() {
                 adapterChannel.notifyDataSetChanged()
             }
 
-            override fun onFailure(call: Call<com.example.teamtube.MostPopularData.Root>, t: Throwable) {
+            override fun onFailure(call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>, t: Throwable) {
                 Log.e("API", "onFailure: ${t.message}")
             }
         })
