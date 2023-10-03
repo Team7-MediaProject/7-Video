@@ -1,4 +1,4 @@
-package com.example.teamtube.model
+package com.example.teamtube.Model
 
 data class HomeitemModel (
     val id: String,

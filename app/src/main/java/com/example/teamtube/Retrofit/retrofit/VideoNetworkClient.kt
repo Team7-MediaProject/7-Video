@@ -1,11 +1,11 @@
-package com.example.teamtube.CategoryVideoData
+package com.example.teamtube.Retrofit.retrofit
 
 import com.example.teamtube.Constrant.Constrants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object VideoNetworkClient {
-    val apiCategoryService: VideoInterface
+    val apiService: VideoInterface
         get() = retrofit.create(VideoInterface::class.java)
 
     private val retrofit = Retrofit.Builder()

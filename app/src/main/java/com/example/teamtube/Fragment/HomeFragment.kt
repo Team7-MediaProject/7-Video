@@ -12,16 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamtube.Adapter.CategoryVideoAdapter
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
-import com.example.teamtube.CategoryVideoData.CategoryList
-import com.example.teamtube.ChannelData.ChannelApi
-import com.example.teamtube.ChannelData.ChannelFragmentAdapter
-import com.example.teamtube.ChannelData.ChannelModel
-import com.example.teamtube.MostPopularData.YouTubeApi
-import com.example.teamtube.CategoryVideoData.Model.Root
-import com.example.teamtube.CategoryVideoData.Model.VideoResponse
-import com.example.teamtube.CategoryVideoData.VideoNetworkClient.apiCategoryService
+import com.example.teamtube.Adapter.ChannelFragmentAdapter
+import com.example.teamtube.Model.CategoryDataList
+import com.example.teamtube.Model.CategoryList
+import com.example.teamtube.Model.ChannelModel
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root
+import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.VideoResponse
+import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
-import com.example.teamtube.model.HomeitemModel
+import com.example.teamtube.Model.HomeitemModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,20 +39,10 @@ class HomeFragment : Fragment() {
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
     private val resItemsVideo: MutableList<CategoryList> = mutableListOf()
-
+    private val categoryList = CategoryDataList().categoryList
     private lateinit var layoutManagerMost: LinearLayoutManager
     private lateinit var layoutManagerChannel: LinearLayoutManager
 
-    val categoryList: List<com.example.teamtube.CategoryVideoData.Model.CategoryList> = listOf(
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("1", "Film & Animation"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("2", "Autos & Vehicles"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("10", "Music"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("15", "Pets & Animals"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("17", "Sports"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("20", "Gaming"),
-
-
-    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -108,16 +97,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchVideoResults() {
-        YouTubeApi.apiService.listVideos(
+        apiService.listVideos(
             part = "snippet,contentDetails",
             chart = "mostPopular",
             maxResults = 10,
             regionCode = "KR",
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ"
-        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
+        ).enqueue(object : Callback<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root> {
             override fun onResponse(
-                call: Call<com.example.teamtube.MostPopularData.Root>,
-                response: Response<com.example.teamtube.MostPopularData.Root>
+                call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>,
+                response: Response<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>
             ) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items ?: emptyList()
@@ -136,7 +125,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(
-                call: Call<com.example.teamtube.MostPopularData.Root>,
+                call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>,
                 t: Throwable
             ) {
                 Log.e("YouTubeApi", "Error: ${t.message}")
@@ -145,13 +134,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchChannelResult() {
-        ChannelApi.apiService.listChannels(
+        apiService.listChannels(
             part = "snippet",
             maxResults = 10,
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
             id = "UC_x5XG1OV2P6uZZ5FSM9Ttw, UCU_hKD03cUTCvnOJpEmKvCg, UCUj6rrhMTR9pipbAWBAMvUQ, UCcdlIcleb4oIK6of1ugSJ7w, UCyn-K7rZLXjGl7VXGweIlcA, UCtm_QoN2SIxwCE-59shX7Qg, UCPWFxcwPliEBMwJjmeFIDIg, UCiBr0bK06imaMbLc8sAEz0A, UC78PMQprrZTbU0IlMDsYZPw, UCL3gnarNIeI_M0cFxjNYdAA"
-        ).enqueue(object : Callback<com.example.teamtube.MostPopularData.Root> {
-            override fun onResponse(call: Call<com.example.teamtube.MostPopularData.Root>, response: Response<com.example.teamtube.MostPopularData.Root>) {
+        ).enqueue(object : Callback<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root> {
+            override fun onResponse(call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>, response: Response<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>) {
                 if (response.isSuccessful) {
                     val channelData = response.body()
                     channelData?.items?.let { items ->
@@ -171,14 +160,14 @@ class HomeFragment : Fragment() {
                 adapterChannel.notifyDataSetChanged()
             }
 
-            override fun onFailure(call: Call<com.example.teamtube.MostPopularData.Root>, t: Throwable) {
+            override fun onFailure(call: Call<com.example.teamtube.Retrofit.ApiData.MostPopularData.Root>, t: Throwable) {
                 Log.e("API", "onFailure: ${t.message}")
             }
         })
     }
 
     private fun communicateCategoryVideo() {
-        apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
+        apiService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
             .enqueue(object : Callback<Root> {
                 override fun onResponse(
                     call: Call<Root>,
@@ -213,7 +202,7 @@ class HomeFragment : Fragment() {
 
 
     private fun fetchCategoryVideoResults(selectedId: String) {
-        apiCategoryService.getVideoInfo(
+        apiService.getVideoInfo(
             part = "snippet,contentDetails",
             chart = "mostPopular",
             maxResults = 10,
