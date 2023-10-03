@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.teamtube.ChannelData.ChannelModel
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.CategoryChannelItemBinding
 
 class MyVideoFragmentAdapter(private val mContext: Context) :
