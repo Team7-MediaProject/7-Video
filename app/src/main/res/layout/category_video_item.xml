@@ -14,6 +14,7 @@
         android:padding="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sample1"
+        android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +29,7 @@
         android:text="동영상 제목이다!!!!"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/home_category_video_image"
         app:layout_constraintTop_toBottomOf="@+id/home_category_video_image" />
