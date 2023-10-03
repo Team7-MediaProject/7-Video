@@ -1,11 +1,7 @@
-package com.example.teamtube.MostPopularData
+package com.example.teamtube.Retrofit.ApiData.MostPopularData
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
-
-
-
 
 data class Root(
     @SerializedName("kind") val kind: String,

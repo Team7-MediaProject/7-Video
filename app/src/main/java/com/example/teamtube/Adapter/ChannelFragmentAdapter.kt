@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.MainActivity
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.CategoryChannelItemBinding
 import com.example.teamtube.model.HomeitemModel
 
@@ -37,7 +38,7 @@ class ChannelFragmentAdapter (private val mContext: Context) :
     }
 
     inner class ChannelViewHolder(private val binding: CategoryChannelItemBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        RecyclerView.ViewHolder(binding.root) {
         fun bindChannel(item: ChannelModel) {
             val img_channel : ImageView = binding.imgChannel
             val title_channel : TextView = binding.titleChannel

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.databinding.MostPopularItemBinding
-import com.example.teamtube.model.HomeitemModel
+import com.example.teamtube.Model.HomeitemModel
 
 class HomeFragmentAdapter(private val context: Context) :
     RecyclerView.Adapter<HomeFragmentAdapter.VideoViewHolder>() {

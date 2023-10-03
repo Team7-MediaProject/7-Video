@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData
+package com.example.teamtube.Model
 
 data class ChannelModel (
     val thumbnails: String,

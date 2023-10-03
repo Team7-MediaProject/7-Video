@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.teamtube.SearchFragmentData.SearchData
+import com.example.teamtube.Model.SearchData
 
 
 class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<SearchFragmentAdapter.ItemViewHolder>() {
