@@ -22,6 +22,7 @@
         android:maxLines="1"
         android:maxWidth="120dp"
         android:ellipsize="end"
+        android:fontFamily="@font/dunggeunmo"
         android:text="제목"
         app:layout_constraintTop_toBottomOf="@+id/img_mpv" />
 
