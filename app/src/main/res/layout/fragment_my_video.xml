@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".Fragment.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profile_card_view"
@@ -32,6 +32,7 @@
         android:text="7렐레8렐레"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:text="좋아요 표시한 채널"
+        android:fontFamily="@font/dunggeunmo"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +73,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="좋아요 표시한 동영상"
+        android:fontFamily="@font/dunggeunmo"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

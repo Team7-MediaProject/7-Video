@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
+import com.example.teamtube.Adapter.ViewPager2Adapter
+import com.example.teamtube.Fragment.HomeFragment
+import com.example.teamtube.Fragment.MyVideoFragment
+import com.example.teamtube.Fragment.SearchFragment
 import com.example.teamtube.ChannelData.ChannelModel
 import com.example.teamtube.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
