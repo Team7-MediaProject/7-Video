@@ -1,20 +1,18 @@
-package com.example.teamtube
+package com.example.teamtube.Fragment
 
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.teamtube.Adapter.SearchFragmentAdapter
 import com.example.teamtube.SearchFragmentData.RetrofitClient.apiService
 import com.example.teamtube.SearchFragmentData.SearchData
 import com.example.teamtube.SearchFragmentData.SearchItem

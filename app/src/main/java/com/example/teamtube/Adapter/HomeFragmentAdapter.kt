@@ -1,4 +1,4 @@
-package com.example.teamtube
+package com.example.teamtube.Adapter
 
 import android.content.Context
 import android.util.Log
