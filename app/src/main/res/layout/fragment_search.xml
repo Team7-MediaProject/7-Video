@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".HomeFragment">
+    tools:context=".Fragment.HomeFragment">
 
     <EditText
         android:id="@+id/sf_et_search"
@@ -16,6 +16,7 @@
         android:hint="찾던지 말던지"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/dunggeunmo"
         android:layout_marginTop="10dp"
         android:inputType="text"
         android:maxLines="1"
@@ -45,6 +46,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:text="힐링"
+            android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
         <Button
@@ -54,6 +56,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="수면음악"
+            android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
         <Button
@@ -63,6 +66,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="게임"
+            android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
         <Button
@@ -72,6 +76,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="영화"
+            android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
     </LinearLayout>

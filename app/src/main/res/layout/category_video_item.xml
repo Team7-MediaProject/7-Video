@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/home_category_video_image"
@@ -12,20 +12,25 @@
         android:layout_gravity="center_vertical"
         android:background="@drawable/round_box"
         android:padding="10dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/sample1"
+        android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/home_category_video_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="동영상 제목이다!!!!"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="@font/dunggeunmo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/home_category_video_image"
         app:layout_constraintTop_toBottomOf="@+id/home_category_video_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>
