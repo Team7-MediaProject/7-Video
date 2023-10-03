@@ -12,16 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamtube.Adapter.CategoryVideoAdapter
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
-import com.example.teamtube.CategoryVideoData.CategoryList
-import com.example.teamtube.ChannelData.ChannelApi
-import com.example.teamtube.ChannelData.ChannelFragmentAdapter
-import com.example.teamtube.ChannelData.ChannelModel
-import com.example.teamtube.MostPopularData.YouTubeApi
-import com.example.teamtube.CategoryVideoData.Model.Root
-import com.example.teamtube.CategoryVideoData.Model.VideoResponse
-import com.example.teamtube.CategoryVideoData.VideoNetworkClient.apiCategoryService
+import com.example.teamtube.Adapter.ChannelFragmentAdapter
+import com.example.teamtube.Model.CategoryList
+import com.example.teamtube.Model.ChannelModel
+import com.example.teamtube.Retrofit.ApiModel.Root
+import com.example.teamtube.Retrofit.ApiModel.VideoResponse
+import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient.apiService
 import com.example.teamtube.databinding.FragmentHomeBinding
-import com.example.teamtube.model.HomeitemModel
+import com.example.teamtube.Model.HomeitemModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,16 +42,15 @@ class HomeFragment : Fragment() {
     private lateinit var layoutManagerMost: LinearLayoutManager
     private lateinit var layoutManagerChannel: LinearLayoutManager
 
-    val categoryList: List<com.example.teamtube.CategoryVideoData.Model.CategoryList> = listOf(
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("1", "Film & Animation"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("2", "Autos & Vehicles"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("10", "Music"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("15", "Pets & Animals"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("17", "Sports"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("20", "Gaming"),
-
-
+    val categoryList: List<com.example.teamtube.Retrofit.ApiModel.CategoryList> = listOf(
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("1", "Film & Animation"),
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("2", "Autos & Vehicles"),
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("10", "Music"),
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("15", "Pets & Animals"),
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("17", "Sports"),
+        com.example.teamtube.Retrofit.ApiModel.CategoryList("20", "Gaming"),
     )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -108,7 +105,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchVideoResults() {
-        YouTubeApi.apiService.listVideos(
+        apiService.listVideos(
             part = "snippet,contentDetails",
             chart = "mostPopular",
             maxResults = 10,
@@ -145,7 +142,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchChannelResult() {
-        ChannelApi.apiService.listChannels(
+        apiService.listChannels(
             part = "snippet",
             maxResults = 10,
             apikey = "AIzaSyBDAlTp9FuXH4pV_cJqcrJkbL2PFA4_-qQ",
@@ -178,7 +175,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun communicateCategoryVideo() {
-        apiCategoryService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
+        apiService.getCategoryVideoInfo("snippet", "KR", Constrants.API_KEY)
             .enqueue(object : Callback<Root> {
                 override fun onResponse(
                     call: Call<Root>,
@@ -213,7 +210,7 @@ class HomeFragment : Fragment() {
 
 
     private fun fetchCategoryVideoResults(selectedId: String) {
-        apiCategoryService.getVideoInfo(
+        apiService.getVideoInfo(
             part = "snippet,contentDetails",
             chart = "mostPopular",
             maxResults = 10,

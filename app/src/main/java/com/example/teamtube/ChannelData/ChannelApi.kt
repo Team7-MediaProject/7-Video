@@ -1,3 +1,4 @@
+/*
 package com.example.teamtube.ChannelData
 
 import com.google.gson.GsonBuilder
@@ -19,4 +20,4 @@ object ChannelApi {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
         }
-}
+}*/

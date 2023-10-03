@@ -1,3 +1,4 @@
+/*
 package com.example.teamtube.ChannelData
 
 import com.example.teamtube.MostPopularData.Root
@@ -13,4 +14,4 @@ interface ChannelApiService {
         @Query("key") apikey: String,
         @Query("id") id: String
     ) : Call<Root>
-}
+}*/

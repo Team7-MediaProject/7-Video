@@ -1,4 +1,4 @@
-package com.example.teamtube.CategoryVideoData.Model
+package com.example.teamtube.Retrofit.ApiModel
 
 import com.google.gson.annotations.SerializedName
 

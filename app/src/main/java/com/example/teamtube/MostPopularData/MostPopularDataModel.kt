@@ -3,10 +3,6 @@ package com.example.teamtube.MostPopularData
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-
-
-
-
 data class Root(
     @SerializedName("kind") val kind: String,
     @SerializedName("etag") val etag: String,

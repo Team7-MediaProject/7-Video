@@ -1,6 +1,4 @@
-package com.example.teamtube.SearchFragmentData
-
-import android.service.quicksettings.Tile
+package com.example.teamtube.Model
 
 data class SearchData(
     val title: String,

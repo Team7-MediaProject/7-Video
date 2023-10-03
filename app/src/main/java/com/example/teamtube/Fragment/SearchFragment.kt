@@ -13,14 +13,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.teamtube.Adapter.SearchFragmentAdapter
-import com.example.teamtube.SearchFragmentData.RetrofitClient.apiService
-import com.example.teamtube.SearchFragmentData.SearchData
+import com.example.teamtube.Model.SearchData
+import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient
 import com.example.teamtube.SearchFragmentData.SearchItem
 import com.example.teamtube.databinding.FragmentSearchBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -122,7 +121,7 @@ class SearchFragment : Fragment() {
 
     private fun searchVideo(query: String, category: String) {
         val query = "$category + $query"
-        apiService.videoSearch(
+        VideoNetworkClient.apiService.videoSearch(
             apiKey = KEY,
             part = "snippet",
             maxResults = 30,

@@ -1,4 +1,4 @@
-package com.example.teamtube.CategoryVideoData.Model
+package com.example.teamtube.Retrofit.ApiModel
 
 data class VideoResponse(
     val kind: String,
