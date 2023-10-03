@@ -17,7 +17,6 @@ interface VideoInterface {
     ) : Call<Root>
 
     @GET("v3/videos")
-
     fun getVideoInfo (
         //@QueryMap param : HashMap<String, String>
         @Query("part") part : String,
