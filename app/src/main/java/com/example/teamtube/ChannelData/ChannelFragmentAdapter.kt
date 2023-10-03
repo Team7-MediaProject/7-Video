@@ -1,12 +1,15 @@
 package com.example.teamtube.ChannelData
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.teamtube.MainActivity
 import com.example.teamtube.databinding.CategoryChannelItemBinding
 import com.example.teamtube.model.HomeitemModel
 
@@ -34,7 +37,7 @@ class ChannelFragmentAdapter (private val mContext: Context) :
     }
 
     inner class ChannelViewHolder(private val binding: CategoryChannelItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         fun bindChannel(item: ChannelModel) {
             val img_channel : ImageView = binding.imgChannel
             val title_channel : TextView = binding.titleChannel
@@ -44,6 +47,27 @@ class ChannelFragmentAdapter (private val mContext: Context) :
                 .into(img_channel)
 
             title_channel.text = item.title
+        }
+
+        init {
+            binding.imgChannel.setOnClickListener(this)
+        }
+
+        override fun onClick(view: View) {
+            Log.d("Click", "클릭되었슴")
+            val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?: return
+            val item = itemsChannel[position]
+
+            item.isLike = !item.isLike
+
+            if(item.isLike) {
+                (mContext as MainActivity).addLikedItem(item)
+                binding.likeImageView.visibility = View.VISIBLE
+            } else {
+                (mContext as MainActivity).removeLikedItem(item)
+                binding.likeImageView.visibility = View.GONE
+            }
+            notifyItemChanged(position)
         }
     }
 

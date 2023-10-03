@@ -68,9 +68,11 @@ class MainActivity : AppCompatActivity() {
     fun addLikedItem(item: ChannelModel) {
         if(!likedItems.contains(item)) {
             likedItems.add(item)
+            Log.d("LikedList", "List: $likedItems")
         }
     }
     fun removeLikedItem(item: ChannelModel) {
         likedItems.remove(item)
+        Log.d("LikedList", "List: $likedItems")
     }
 }
