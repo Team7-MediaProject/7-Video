@@ -46,13 +46,14 @@ class HomeFragment : Fragment() {
 
     val categoryList: List<com.example.teamtube.CategoryVideoData.Model.CategoryList> = listOf(
         com.example.teamtube.CategoryVideoData.Model.CategoryList("1", "Film & Animation"),
+        com.example.teamtube.CategoryVideoData.Model.CategoryList("2", "Autos & Vehicles"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("10", "Music"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("15", "Pets & Animals"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("17", "Sports"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("18", "Short Movies"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("20", "Gaming"),
-    )
 
+
+    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
