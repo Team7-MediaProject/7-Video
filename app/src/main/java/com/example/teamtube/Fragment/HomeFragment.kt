@@ -46,37 +46,13 @@ class HomeFragment : Fragment() {
 
     val categoryList: List<com.example.teamtube.CategoryVideoData.Model.CategoryList> = listOf(
         com.example.teamtube.CategoryVideoData.Model.CategoryList("1", "Film & Animation"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("2", "Autos & Vehicles"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("10", "Music"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("15", "Pets & Animals"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("17", "Sports"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("18", "Short Movies"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("19", "Travel & Events"),
         com.example.teamtube.CategoryVideoData.Model.CategoryList("20", "Gaming"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("21", "Videoblogging"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("22", "People & Blogs"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("23", "Comedy"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("24", "Entertainment"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("25", "News & Politics"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("26", "Howto & Style"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("27", "Education"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("28", "Science & Technology"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("30", "Movies"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("31", "Anime/Animation"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("32", "Action/Adventure"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("33", "Classics"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("34", "Comedy"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("35", "Documentary"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("36", "Drama"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("37", "Family"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("38", "Foreign"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("39", "Horror"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("40", "Sci-Fi/Fantasy"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("41", "Thriller"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("42", "Shorts"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("43", "Shows"),
-        com.example.teamtube.CategoryVideoData.Model.CategoryList("44", "Trailers"),
     )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -210,7 +186,7 @@ class HomeFragment : Fragment() {
                     if (response.isSuccessful) {
                         val categoryVideo = response.body()?.items ?: emptyList()
                         if (categoryVideo.isNotEmpty()) {
-                            category = categoryVideo.map { it.snippet.title }
+                            category = categoryList.map { it.title }
                             Log.d("CategoryVideo", "${category}")
                             // category Adapter 초기화 및 설정
                             val categoryAdapter = ArrayAdapter(
