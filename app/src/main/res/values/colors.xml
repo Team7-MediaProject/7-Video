@@ -2,6 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="limpidity">#00ff0000</color>
+
+    <color name="circle">#FFB897</color>
+    <color name="blueSolid">#2121DE</color>
+    <color name="logoBackground">#E6762D</color>
+
     <!-- Grey -->
 
     <color name="grey_50">#FAFAFA</color>
