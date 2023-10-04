@@ -4,4 +4,5 @@ data class ChannelModel (
     val thumbnails: String,
     val id: String,
     val title: String,
+    var isLike: Boolean = false
 )

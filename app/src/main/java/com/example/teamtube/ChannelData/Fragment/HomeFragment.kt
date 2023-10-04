@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teamtube.Adapter.CategoryVideoAdapter
 import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
-import com.example.teamtube.Adapter.ChannelFragmentAdapter
+import com.example.teamtube.ChannelData.ChannelFragmentAdapter
 import com.example.teamtube.Model.CategoryDataList
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root

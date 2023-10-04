@@ -1,4 +1,4 @@
-package com.example.teamtube.Activity
+package com.example.teamtube
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +10,14 @@ import com.example.teamtube.ChannelData.Fragment.HomeFragment
 import com.example.teamtube.ChannelData.Fragment.MyVideoFragment
 import com.example.teamtube.ChannelData.Fragment.SearchFragment
 import com.example.teamtube.R
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
+import java.lang.reflect.Type
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -25,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = ""
 
         initViewPager()
+        loadData()
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -65,5 +72,39 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }.attach()
+    }
+
+    var likedItems: ArrayList<ChannelModel> = ArrayList()
+
+    private fun saveData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val edit = pref.edit()
+        val gson = Gson()
+        val json = gson.toJson(likedItems)
+        edit.putString("List", json)
+        edit.apply()
+    }
+
+    private fun loadData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val gson = Gson()
+        val json = pref.getString("List", null)
+        val type: Type = object : TypeToken<ArrayList<ChannelModel>>(){}.type
+        likedItems = gson.fromJson(json, type) ?: ArrayList<ChannelModel>()
+    }
+
+    fun addLikedItem(item: ChannelModel) {
+        if(!likedItems.contains(item)) {
+            likedItems.add(item)
+            saveData()
+            val titleList = likedItems.map { it.title }
+            Log.d("LikedList", "List: $titleList")
+        }
+    }
+    fun removeLikedItem(item: ChannelModel) {
+        likedItems.remove(item)
+        saveData()
+        val titleList = likedItems.map { it.title }
+        Log.d("LikedList", "List: $titleList")
     }
 }
