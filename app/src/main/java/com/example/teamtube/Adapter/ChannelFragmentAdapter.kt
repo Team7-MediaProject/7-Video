@@ -32,10 +32,14 @@ class ChannelFragmentAdapter (private val mContext: Context) :
 
     override fun onBindViewHolder(holder: ChannelViewHolder, position: Int) {
         val itemChannel = itemsChannel[position]
-        holder.bindChannel(itemChannel)
 
-        val currentItem = itemsChannel[position]
-        holder.img_like.visibility = if(currentItem.isLike)View.VISIBLE else View.INVISIBLE
+        Glide.with(mContext)
+            .load(itemChannel.thumbnails)
+            .into(holder.img_channel)
+
+        holder.title_channel.text = itemChannel.title
+
+        holder.img_like.visibility = if(itemChannel.isLike)View.VISIBLE else View.INVISIBLE
     }
 
     override fun getItemCount(): Int {
@@ -49,14 +53,6 @@ class ChannelFragmentAdapter (private val mContext: Context) :
         var img_channel : ImageView = binding.imgChannel
         var title_channel : TextView = binding.titleChannel
         var img_like : ImageView = binding.likeImageView
-        fun bindChannel(item: ChannelModel) {
-
-            Glide.with(mContext)
-                .load(item.thumbnails)
-                .into(img_channel)
-
-            title_channel.text = item.title
-        }
 
         init {
 //            img_like.visibility = View.INVISIBLE
@@ -80,8 +76,6 @@ class ChannelFragmentAdapter (private val mContext: Context) :
             Log.d("ppp","ppp: $position, $item")
             notifyItemChanged(position)
         }
-
-
     }
 
     fun updateData(newItems: List<ChannelModel>) {
