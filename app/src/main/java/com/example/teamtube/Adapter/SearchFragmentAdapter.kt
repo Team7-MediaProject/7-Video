@@ -60,10 +60,14 @@ class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapte
 
 
         override fun onClick(view: View?) {
-            sf_item_iv.setOnClickListener{
-                val intent = Intent(mContext, VideoDetailActivity::class.java)
-                intent.putExtra("Data", items)
-                mContext.startActivity(intent)
+            view?.let{
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val currentItem = items[position]
+                    val intent = Intent(mContext, VideoDetailActivity::class.java)
+                    intent.putExtra("Data", currentItem)
+                    mContext.startActivity(intent)
+                }
             }
         }
     }
