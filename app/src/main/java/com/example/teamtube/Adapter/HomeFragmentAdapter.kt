@@ -44,7 +44,7 @@ class HomeFragmentAdapter(private val context: Context) :
                 .into(binding.imgMpv)
         }
     }
-
+    
     fun updateData(newItems: List<HomeitemModel>) {
         items.clear()
         items.addAll(newItems)
