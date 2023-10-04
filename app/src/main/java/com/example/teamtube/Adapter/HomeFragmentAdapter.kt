@@ -1,13 +1,16 @@
 package com.example.teamtube.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.databinding.MostPopularItemBinding
 import com.example.teamtube.Model.HomeitemModel
+import com.example.teamtube.VideoDetailActivity
 
 class HomeFragmentAdapter(private val context: Context) :
     RecyclerView.Adapter<HomeFragmentAdapter.VideoViewHolder>() {
@@ -36,6 +39,11 @@ class HomeFragmentAdapter(private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: HomeitemModel) {
+            binding.imgMpv.setOnClickListener {
+                val intent = Intent(context, VideoDetailActivity::class.java)
+                intent.putExtra("Data", item)
+                context.startActivity(intent)
+            }
             binding.scInfo.text = item.title
             Log.d("test","item"+item.title)
 

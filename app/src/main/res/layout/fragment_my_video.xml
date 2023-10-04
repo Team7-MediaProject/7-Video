@@ -5,80 +5,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Fragment.HomeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/profile_card_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"
+        app:civ_border_overlay="true"
+        app:civ_border_width="4dp"
+        app:civ_border_color="@color/blueSolid"
         app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <ImageView
-            android:id="@+id/profile_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/team_image"/>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/image_ready">
+    </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/profile_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="7렐레8렐레"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/dunggeunmo"
+        android:textColor="@color/yellow_600"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_card_view" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image_view" />
 
-    <TextView
-        android:id="@+id/liked_channel_text_view"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/like_channel_linear"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="좋아요 표시한 채널"
-        android:fontFamily="@font/dunggeunmo"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_text_view">
+
+        <TextView
+            android:id="@+id/liked_channel_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dunggeunmo"
+            android:text="좋아요 표시한 채널"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cherry" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liked_channel_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liked_channel_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/like_channel_linear"
         tools:ignore="SpeakableTextPresentCheck"
         tools:listitem="@layout/category_channel_item" />
 
-    <TextView
-        android:id="@+id/liked_video_text_view"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/liked_video_linear"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:text="좋아요 표시한 동영상"
-        android:fontFamily="@font/dunggeunmo"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liked_channel_recycler_view" />
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/liked_channel_recycler_view">
+
+        <TextView
+            android:id="@+id/liked_video_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dunggeunmo"
+            android:text="좋아요 표시한 동영상"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/liked_channel_recycler_view" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cherry" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liked_video_recycler_view"
@@ -90,7 +120,7 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liked_video_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/liked_video_linear"
         tools:listitem="@layout/category_video_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

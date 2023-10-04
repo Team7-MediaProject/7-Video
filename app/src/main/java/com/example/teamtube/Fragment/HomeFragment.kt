@@ -116,7 +116,8 @@ class HomeFragment : Fragment() {
                         val id = it.id
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
-                        resItems.add(HomeitemModel(id, title, thumbnail))
+                        val description = it.snippet.description
+                        resItems.add(HomeitemModel(id, title, thumbnail, description))
                     }
                     adapterMost.updateData(resItems)
                 } else {
@@ -224,7 +225,8 @@ class HomeFragment : Fragment() {
                         val id = selectedId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
-                        resItemsVideo.add(CategoryList(id, title, thumbnail))
+                        val description = it.snippet.description
+                        resItemsVideo.add(CategoryList(id, title, thumbnail, description))
                     }
                     videoAdapter.setVideoItems(resItemsVideo)
                 } else {
