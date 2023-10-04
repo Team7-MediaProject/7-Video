@@ -12,19 +12,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/mp_videos"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/most_linear"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="인기동영상"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:fontFamily="@font/dunggeunmo"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/pacman" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/dots" />
+
+            <TextView
+                android:id="@+id/mp_videos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dunggeunmo"
+                android:layout_marginHorizontal="10dp"
+                android:text="인기동영상"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_most_popular"
@@ -34,21 +54,38 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mp_videos" />
+            app:layout_constraintTop_toBottomOf="@+id/most_linear" />
 
-        <TextView
-            android:id="@+id/category_channels"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/channel_linear"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="채널"
-            android:fontFamily="@font/dunggeunmo"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_most_popular" />
+            android:gravity="center_vertical"
+            android:layout_marginVertical="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/rv_most_popular">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/pacman" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/dots" />
+            <TextView
+                android:id="@+id/category_channels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dunggeunmo"
+                android:text="채널"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_channel"
@@ -58,25 +95,44 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_channels" />
+            app:layout_constraintTop_toBottomOf="@+id/channel_linear" />
 
-        <Spinner
-            android:id="@+id/category_videos"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/cateogry_linear"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_channel"
-            app:spinner_arrow_gravity="end"
-            app:spinner_arrow_tint="@color/red_400"
-            app:spinner_divider_color="@color/grey_200"
-            app:spinner_divider_show="true"
-            app:spinner_divider_size="1dp"
-            app:spinner_item_height="50dp"
-            app:spinner_popup_animation="dropdown" />
+            android:gravity="center_vertical"
+            android:layout_marginVertical="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/rv_channel">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/pacman" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/dots" />
+
+            <Spinner
+                android:id="@+id/category_videos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/white"
+                android:layout_marginHorizontal="10dp"
+                app:spinner_arrow_gravity="end"
+                app:spinner_arrow_tint="@color/red_400"
+                app:spinner_divider_color="@color/grey_200"
+                app:spinner_divider_show="true"
+                app:spinner_divider_size="1dp"
+                app:spinner_item_height="50dp"
+                app:spinner_popup_animation="dropdown" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_videos"
@@ -86,7 +142,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/category_videos" />
+            app:layout_constraintTop_toBottomOf="@+id/cateogry_linear" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
