@@ -16,13 +16,13 @@ class VideoDetailActivity : AppCompatActivity() {
 
         var detailList = intent.getParcelableExtra<HomeitemModel>("Data")
 
-        detailList?.thumbnails?.let { imageUrl ->
-            Glide.with(this)
-                .load(imageUrl)
-                .into(binding.detailView)
-        }
-        binding.videoTitle.text = detailList?.title
-        binding.detailInfo.text = detailList?.description
+//        detailList?.id?.let { imageUrl ->
+//            Glide.with(this)
+//                .load(imageUrl)
+//                .into(binding.detailView)
+//        }
+//        binding.videoTitle.text = detailList?.title
+//        binding.detailInfo.text = detailList?.description
     }
 
 //        videoList()

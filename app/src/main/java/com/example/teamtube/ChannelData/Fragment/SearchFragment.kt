@@ -138,7 +138,7 @@ class SearchFragment : Fragment() {
                                 val id = item.id.videoId
                                 val title = item.snippet.title
                                 val thumbnails = item.snippet.thumbnails.high.url
-                                val categoryTitle = item.snippet.categoryId
+                                val categoryTitle = item.snippet.categoryId ?: "Default Category"
                                 val description = item.snippet.description
                                 resItems.add(HomeitemModel(id, title, thumbnails, categoryTitle, description))
 
