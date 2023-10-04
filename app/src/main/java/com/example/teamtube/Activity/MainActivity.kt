@@ -1,4 +1,4 @@
-package com.example.teamtube
+package com.example.teamtube.Activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import com.example.teamtube.Adapter.ViewPager2Adapter
 import com.example.teamtube.Fragment.HomeFragment
 import com.example.teamtube.Fragment.MyVideoFragment
 import com.example.teamtube.Fragment.SearchFragment
+import com.example.teamtube.R
 import com.example.teamtube.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "보던지 말던지"
+        supportActionBar?.title = ""
 
         initViewPager()
     }
@@ -52,15 +53,15 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> {
                     tab.text = "Home"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_home, null)
+                    tab.icon = resources.getDrawable(R.drawable.red_ghost, null)
                 }
                 1 -> {
                     tab.text = "Search"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_search, null)
+                    tab.icon = resources.getDrawable(R.drawable.yellow_ghost, null)
                 }
                 2 -> {
                     tab.text = "My Video"
-                    tab.icon = resources.getDrawable(R.drawable.icon_nav_myvideo, null)
+                    tab.icon = resources.getDrawable(R.drawable.blue_ghost, null)
                 }
             }
         }.attach()

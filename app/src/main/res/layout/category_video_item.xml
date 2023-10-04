@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="15dp">
 
-    <ImageView
-        android:id="@+id/home_category_video_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="230dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/round_box"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
-        android:fontFamily="@font/dunggeunmo"
+        app:cardCornerRadius="60dp"
+        app:cardBackgroundColor="@color/limpidity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/home_category_video_image"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/dunggeunmo"
+            android:padding="10dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/home_category_video_title"
@@ -25,11 +36,13 @@
         android:layout_marginHorizontal="20dp"
         android:ellipsize="end"
         android:maxLines="2"
+        android:layout_marginVertical="10dp"
         android:text="동영상 제목이다!!!!"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/home_category_video_image"
-        app:layout_constraintTop_toBottomOf="@+id/home_category_video_image" />
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

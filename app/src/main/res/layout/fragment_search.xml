@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background"
     tools:context=".Fragment.HomeFragment">
 
     <EditText
         android:id="@+id/sf_et_search"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
+        android:layout_marginVertical="20dp"
         android:background="@drawable/searchfragment_et_round_corner_rectangle"
         android:hint="찾던지 말던지"
+        android:textColor="@color/white"
+        android:paddingHorizontal="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:fontFamily="@font/dunggeunmo"
@@ -24,12 +27,13 @@
 
     <ImageButton
         android:id="@+id/sf_btn_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_search"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="15dp"
+        android:background="@color/limpidity"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pink_ghost"
+        app:layout_constraintBottom_toBottomOf="@+id/sf_et_search"
         app:layout_constraintStart_toEndOf="@id/sf_et_search"
         app:layout_constraintTop_toTopOf="@id/sf_et_search" />
 
@@ -46,16 +50,20 @@
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:text="힐링"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
         <Button
             android:id="@+id/sf_btn_asmr"
-            android:layout_width="75dp"
+            android:layout_width="90dp"
             android:layout_height="35dp"
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="수면음악"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
@@ -66,6 +74,8 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="게임"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
@@ -76,6 +86,8 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="20dp"
             android:text="영화"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:fontFamily="@font/dunggeunmo"
             android:background="@drawable/searchfragment_btn_click_color"></Button>
 
@@ -85,13 +97,9 @@
         android:id="@+id/sf_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sf_lin">
-
     </androidx.recyclerview.widget.RecyclerView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
