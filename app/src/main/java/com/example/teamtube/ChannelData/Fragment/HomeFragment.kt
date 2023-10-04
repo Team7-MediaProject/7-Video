@@ -14,7 +14,6 @@ import com.example.teamtube.Constrant.Constrants
 import com.example.teamtube.Adapter.HomeFragmentAdapter
 import com.example.teamtube.Adapter.ChannelFragmentAdapter
 import com.example.teamtube.Model.CategoryDataList
-import com.example.teamtube.Model.CategoryList
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.Root
 import com.example.teamtube.Retrofit.ApiData.CategoryVideoData.VideoResponse
@@ -38,7 +37,7 @@ class HomeFragment : Fragment() {
     private var category: List<String> = emptyList()
     private val resItems: MutableList<HomeitemModel> = mutableListOf()
     private val resItemsChannel: ArrayList<ChannelModel> = ArrayList()
-    private val resItemsVideo: MutableList<CategoryList> = mutableListOf()
+    private val resItemsVideo: MutableList<HomeitemModel> = mutableListOf()
     private val categoryList = CategoryDataList().categoryList
     private lateinit var layoutManagerMost: LinearLayoutManager
     private lateinit var layoutManagerChannel: LinearLayoutManager
@@ -116,8 +115,9 @@ class HomeFragment : Fragment() {
                         val id = it.id
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
+                        val categoryTitle = it.snippet.categoryId
                         val description = it.snippet.description
-                        resItems.add(HomeitemModel(id, title, thumbnail, description))
+                        resItems.add(HomeitemModel(id, title, thumbnail, categoryTitle, description))
                     }
                     adapterMost.updateData(resItems)
                 } else {
@@ -225,8 +225,9 @@ class HomeFragment : Fragment() {
                         val id = selectedId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url
+                        val categoryTitle = it.snippet.categoryId
                         val description = it.snippet.description
-                        resItemsVideo.add(CategoryList(id, title, thumbnail, description))
+                        resItemsVideo.add(HomeitemModel(id, title, thumbnail, categoryTitle, description))
                     }
                     videoAdapter.setVideoItems(resItemsVideo)
                 } else {
