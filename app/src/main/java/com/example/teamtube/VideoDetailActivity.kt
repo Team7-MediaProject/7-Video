@@ -3,9 +3,7 @@ package com.example.teamtube
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.example.teamtube.Model.CategoryList
 import com.example.teamtube.Model.HomeitemModel
-import com.example.teamtube.Model.SearchData
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
 
 class VideoDetailActivity : AppCompatActivity() {

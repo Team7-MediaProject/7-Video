@@ -1,4 +1,4 @@
-package com.example.teamtube.Fragment
+package com.example.teamtube.ChannelData.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.teamtube.Adapter.SearchFragmentAdapter
-import com.example.teamtube.Model.SearchData
+import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.Retrofit.retrofit.VideoNetworkClient
 import com.example.teamtube.Retrofit.ApiData.SearchData.SearchItem
 import com.example.teamtube.databinding.FragmentSearchBinding
@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private val KEY = "AIzaSyB2BlIqR-ySDZYz2NBP7uysaZY1rA7OuhM"
     private lateinit var adapter: SearchFragmentAdapter
-    private var resItems: ArrayList<SearchData> = ArrayList()
+    private var resItems: ArrayList<HomeitemModel> = ArrayList()
     private lateinit var mContext: Context
     fun togglebtn(view: View) {
         listOf(
@@ -135,14 +135,15 @@ class SearchFragment : Fragment() {
                         val searchData = response.body()
                         searchData?.items?.let { items ->
                             for (item in items) {
-                                val thumbnails = item.snippet.thumbnails.high.url
-                                val title = item.snippet.title
                                 val id = item.id.videoId
+                                val title = item.snippet.title
+                                val thumbnails = item.snippet.thumbnails.high.url
+                                val categoryTitle = item.snippet.categoryId
                                 val description = item.snippet.description
-                                resItems.add(SearchData(title, thumbnails, id, description))
+                                resItems.add(HomeitemModel(id, title, thumbnails, categoryTitle, description))
 
 
-                                Log.d("videoSearch", "thumbnails:$thumbnails, title:$title, id:$id")
+                                Log.d("videoSearch", "thumbnails:$thumbnails, title:$title, id:$id ")
                             }
                         }
                     } else {
