@@ -11,13 +11,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.teamtube.Model.SearchData
+import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.VideoDetailActivity
 
 
 class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<SearchFragmentAdapter.ItemViewHolder>() {
 
-    var items = ArrayList<SearchData>()
+    var items = ArrayList<HomeitemModel>()
 
     fun clearItem() {
         items.clear()

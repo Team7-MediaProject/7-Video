@@ -30,6 +30,7 @@ data class Snippet(
     val publishedAt: String,
     val channelId: String,
     val title: String,
+    val categoryId : String,
     val description: String,
     val thumbnails: Thumbnails,
     val channelTitle: String,
