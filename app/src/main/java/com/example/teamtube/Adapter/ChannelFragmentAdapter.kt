@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData
+package com.example.teamtube.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.CategoryChannelItemBinding
-import com.example.teamtube.model.HomeitemModel
 
 class ChannelFragmentAdapter (private val mContext: Context) :
     RecyclerView.Adapter<ChannelFragmentAdapter.ChannelViewHolder>() {

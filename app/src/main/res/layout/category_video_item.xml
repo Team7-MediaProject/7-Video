@@ -13,7 +13,6 @@
         android:background="@drawable/round_box"
         android:padding="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/sample1"
         android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
