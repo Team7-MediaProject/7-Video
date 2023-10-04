@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sf_item_cl">
-    
+
     <ImageView
         android:id="@+id/sf_item_iv"
         android:layout_width="match_parent"
@@ -12,11 +12,14 @@
         android:scaleType="centerCrop"
         android:maxHeight="300dp"
         android:minHeight="80dp"
+        android:background="@drawable/searchfragment_iv_radius"
+        android:clipToOutline="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"/>
+
 
     <TextView
         android:id="@+id/sf_item_tv"
@@ -25,6 +28,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:fontFamily="@font/dunggeunmo"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/sf_item_iv"
         app:layout_constraintStart_toStartOf="@id/sf_item_iv"
         android:layout_marginTop="10dp"/>

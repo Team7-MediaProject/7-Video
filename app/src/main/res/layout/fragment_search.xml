@@ -26,9 +26,9 @@
         android:id="@+id/sf_btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/white"
-        android:src="@drawable/ic_searchfragment_search"
+        android:src="@drawable/ic_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sf_et_search"
         app:layout_constraintTop_toTopOf="@id/sf_et_search" />

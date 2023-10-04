@@ -50,12 +50,6 @@ class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapte
 
         var sf_item_iv: ImageView = binding.sfItemIv
         var sf_item_tv: TextView = binding.sfItemTv
-        //var sf_item_cl: ConstraintLayout = binding.sfItemCl
-
-//        init {
-//            sf_item_iv.setOnClickListener(this)
-//            sf_item_cl.setOnClickListener(this)
-//        }
 
 
         override fun onClick(view: View?) {
