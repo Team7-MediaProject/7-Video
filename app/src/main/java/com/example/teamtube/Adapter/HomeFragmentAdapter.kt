@@ -41,6 +41,7 @@ class HomeFragmentAdapter(private val context: Context) :
         fun bind(item: HomeitemModel) {
             binding.imgMpv.setOnClickListener {
                 val intent = Intent(context, VideoDetailActivity::class.java)
+                intent.putExtra("Data", item)
                 context.startActivity(intent)
             }
             binding.scInfo.text = item.title

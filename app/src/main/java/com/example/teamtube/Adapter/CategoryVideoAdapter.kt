@@ -36,6 +36,7 @@ class CategoryVideoAdapter(private val mContext: Context) :
         fun bind(item: CategoryList) {
             binding.homeCategoryVideoImage.setOnClickListener {
                 val intent = Intent(mContext, VideoDetailActivity::class.java)
+                intent.putExtra("Data", item)
                 mContext.startActivity(intent)
             }
             binding.apply {
