@@ -1,6 +1,7 @@
 package com.example.teamtube.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamtube.databinding.FragmentSearchItemBinding
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Model.SearchData
+import com.example.teamtube.VideoDetailActivity
 
 
 class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapter<SearchFragmentAdapter.ItemViewHolder>() {
@@ -52,14 +54,17 @@ class SearchFragmentAdapter(private val mContext: Context) : RecyclerView.Adapte
         var sf_item_tv: TextView = binding.sfItemTv
         //var sf_item_cl: ConstraintLayout = binding.sfItemCl
 
-//        init {
-//            sf_item_iv.setOnClickListener(this)
-//            sf_item_cl.setOnClickListener(this)
-//        }
+        init {
+            sf_item_iv.setOnClickListener(this)
+        }
 
 
         override fun onClick(view: View?) {
-
+            sf_item_iv.setOnClickListener{
+                val intent = Intent(mContext, VideoDetailActivity::class.java)
+                intent.putExtra("Data", items)
+                mContext.startActivity(intent)
+            }
         }
     }
 }

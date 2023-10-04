@@ -138,7 +138,8 @@ class SearchFragment : Fragment() {
                                 val thumbnails = item.snippet.thumbnails.high.url
                                 val title = item.snippet.title
                                 val id = item.id.videoId
-                                resItems.add(SearchData(title, thumbnails, id))
+                                val description = item.snippet.description
+                                resItems.add(SearchData(title, thumbnails, id, description))
 
 
                                 Log.d("videoSearch", "thumbnails:$thumbnails, title:$title, id:$id")
