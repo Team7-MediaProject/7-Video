@@ -34,9 +34,6 @@ class MyVideoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        Log.d("lifeCycle", "my_video_fragment onCreateView")
-
-
 
         adapter = MyVideoFragmentAdapter(mContext)
 
@@ -49,7 +46,6 @@ class MyVideoFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("lifeCycle", "my_video_fragment onStart")
     }
 
     override fun onResume() {

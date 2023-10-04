@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Fragment.MyVideoFragment
+import com.example.teamtube.MainActivity
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.databinding.CategoryChannelItemBinding
 import kotlinx.coroutines.NonDisposableHandle.parent
@@ -56,15 +57,16 @@ class MyVideoFragmentAdapter(private val mContext: Context) :
         var channel_item: ConstraintLayout = binding.channelItemConstraintLayout
 
         init {
-            like_image.visibility = View.VISIBLE
 
-//            channel_item.setOnClickListener {
-//                val position = adapterPosition
-//                if(position != RecyclerView.NO_POSITION) {
-//                    itemsChannel.removeAt(position)
-//                    notifyItemRemoved(position)
-//                }
-//            }
+            channel_item.setOnClickListener {
+                val position = adapterPosition
+                (mContext as MainActivity).removeLikedItem(itemsChannel[position])
+
+                if(position != RecyclerView.NO_POSITION) {
+                    itemsChannel.removeAt(position)
+                    notifyItemRemoved(position)
+                }
+            }
         }
     }
 }

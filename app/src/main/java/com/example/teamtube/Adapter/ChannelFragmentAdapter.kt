@@ -38,10 +38,8 @@ class ChannelFragmentAdapter (private val mContext: Context) :
             .into(holder.img_channel)
 
         holder.title_channel.text = itemChannel.title
-
         holder.img_like.visibility = if(itemChannel.isLike)View.VISIBLE else View.INVISIBLE
     }
-
     override fun getItemCount(): Int {
         return itemsChannel.size
     }
