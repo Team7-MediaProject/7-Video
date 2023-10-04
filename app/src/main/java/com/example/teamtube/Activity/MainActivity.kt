@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = "보던지 말던지"
+        supportActionBar?.title = ""
 
         initViewPager()
     }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="15dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -35,10 +36,10 @@
         android:layout_marginHorizontal="20dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:layout_marginVertical="5dp"
+        android:layout_marginVertical="10dp"
         android:text="동영상 제목이다!!!!"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:fontFamily="@font/dunggeunmo"
         app:layout_constraintEnd_toEndOf="parent"
