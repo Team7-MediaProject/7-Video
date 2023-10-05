@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
         val json = pref.getString("List", null)
         val type: Type = object : TypeToken<ArrayList<ChannelModel>>(){}.type
-        likedItems = gson.fromJson(json, type) ?: ArrayList<ChannelModel>()
+        likedItems = gson.fromJson(json, type) ?: ArrayList()
     }
 
     fun addLikedItem(item: ChannelModel) {

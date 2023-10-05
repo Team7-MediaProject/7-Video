@@ -1,26 +1,24 @@
-package com.example.teamtube
+package com.example.teamtube.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.bumptech.glide.Glide
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Model.HomeitemModel
+import com.example.teamtube.Preferences
+import com.example.teamtube.R
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import java.lang.reflect.Type
 
 class VideoDetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityVideoDetailBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
+    var videoItems = mutableListOf<ChannelModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
@@ -46,7 +44,11 @@ class VideoDetailActivity : AppCompatActivity() {
                 binding.btnLike.setBackgroundResource(R.drawable.video_like)
 
                 val thumbnails = detailList?.thumbnails
+                val id = detailList?.id
                 val title = detailList?.title
+
+                Preferences.addLikedItem(this, ChannelModel(thumbnails, id, title, true))
+                /*addLikedItem(ChannelModel(thumbnails, id, title, true))*/
                 Log.d("likedVideo","$thumbnails, $title")
             } else {
                 binding.btnLike.text = "UNLIKE"
@@ -91,5 +93,31 @@ class VideoDetailActivity : AppCompatActivity() {
         }
 
     }
+
+/*    private fun saveData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val edit = pref.edit()
+        val gson = Gson()
+        val json = gson.toJson(videoItems)
+        edit.putString("List", json)
+        edit.apply()
+    }
+
+    fun loadData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val gson = Gson()
+        val json = pref.getString("List", null)
+        val type: Type = object : TypeToken<ArrayList<ChannelModel>>(){}.type
+        videoItems = gson.fromJson(json, type) ?: ArrayList()
+    }
+
+    fun addLikedItem(item: ChannelModel) {
+        if(!videoItems.contains(item)) {
+            videoItems.add(item)
+            saveData()
+            val titleList = videoItems.map { it.title }
+            Log.d("LikedList", "List: $titleList")
+        }
+    }*/
 }
 

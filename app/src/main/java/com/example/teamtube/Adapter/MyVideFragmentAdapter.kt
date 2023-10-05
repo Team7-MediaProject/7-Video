@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Model.ChannelModel
-import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.CategoryVideoItemBinding
 
 class MyVideoFragmentAdapter(private val mContext: Context) :
     RecyclerView.Adapter<MyVideoFragmentAdapter.MyVideoViewHolder>() {
     private lateinit var binding : CategoryVideoItemBinding
-    var itemsVideo = mutableListOf<HomeitemModel>()
+    var itemsVideo = mutableListOf<ChannelModel>()
 
-    fun setChannelItems(list: List<HomeitemModel>) {
-        itemsVideo = list.toMutableList()
+    fun setVideoItems(items: List<ChannelModel>) {
+        itemsVideo.clear()
+        itemsVideo.addAll(items)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):MyVideoFragmentAdapter.MyVideoViewHolder {
-        val binding = CategoryVideoItemBinding.inflate(
+        binding = CategoryVideoItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -53,4 +53,5 @@ class MyVideoFragmentAdapter(private val mContext: Context) :
         val img_video = binding.homeCategoryVideoImage
         val tv_video = binding.homeCategoryVideoTitle
     }
+
 }

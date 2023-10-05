@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.teamtube.Model.HomeitemModel
-import com.example.teamtube.VideoDetailActivity
+import com.example.teamtube.Activity.VideoDetailActivity
 import com.example.teamtube.databinding.CategoryVideoItemBinding
 
 class CategoryVideoAdapter(private val mContext: Context) :
