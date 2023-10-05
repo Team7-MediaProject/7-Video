@@ -46,16 +46,6 @@ class VideoDetailActivity : AppCompatActivity() {
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
 
-
-        detailList?.thumbnails?.let { imageUrl ->
-            Glide.with(this)
-                .load(imageUrl)
-                .into(binding.detailView)
-        }
-        binding.videoTitle.text = detailList?.title
-        binding.detailInfo.text = detailList?.description
-
-
         binding.btnShare.setOnClickListener {
             val mytitle = binding.detailTitle.text.toString()
             val mydescription = binding.detailInfo.text.toString()
