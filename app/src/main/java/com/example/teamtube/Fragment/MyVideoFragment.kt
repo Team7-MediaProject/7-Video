@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.teamtube.Adapter.MyVideoFragmentAdapter
 import com.example.teamtube.MainActivity
 import com.example.teamtube.Model.ChannelModel
+import com.example.teamtube.Retrofit.ApiData.SearchData.Thumbnails
 import com.example.teamtube.databinding.FragmentMyVideoBinding
 
 class MyVideoFragment : Fragment() {
@@ -39,7 +42,11 @@ class MyVideoFragment : Fragment() {
 
         _binding = FragmentMyVideoBinding.inflate(inflater, container, false).apply {
             likedChannelRecyclerView.adapter = adapter
-            likedChannelRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+            likedChannelRecyclerView.layoutManager =
+                LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+
+            //val gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            //binding.likedVideoRecyclerView.layoutManager = gridManager
         }
         return binding.root
     }
@@ -49,8 +56,9 @@ class MyVideoFragment : Fragment() {
         val mainActivity = activity as MainActivity
         likedItems = mainActivity.likedItems
 
-        adapter.setItems(likedItems)
-        Log.d("like11","like: $likedItems")
+        adapter.setChannelItems(likedItems)
+        //adapter.setVideoItems(thumbnail = "", title = "")
+        Log.d("like11", "like: $likedItems")
         Log.d("lifeCycle", "my_video_fragment onResume")
     }
 }
