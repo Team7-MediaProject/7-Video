@@ -62,6 +62,9 @@ class MyVideoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        likedVideo = mutableListOf()
+
         val mainActivity = activity as MainActivity
         likedItems = mainActivity.likedItems
         adapter.setChannelItems(likedItems)

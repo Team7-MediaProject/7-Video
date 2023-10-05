@@ -24,7 +24,7 @@ class VideoDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVideoDetailBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
-    var likedItems: ArrayList<HomeitemModel> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -37,7 +37,6 @@ class VideoDetailActivity : AppCompatActivity() {
 
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
-        binding.btnLike.text = "UNLIKE"
 
         binding.btnLike.setOnClickListener {
             isToggled = !isToggled
