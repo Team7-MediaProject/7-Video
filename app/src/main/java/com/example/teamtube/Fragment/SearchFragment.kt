@@ -49,7 +49,7 @@ class SearchFragment : Fragment() {
 
             } else {
                 view.isSelected = false
-                Toast.makeText(mContext, "검색어 입력해야지", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "검색어를 입력해주세요!", Toast.LENGTH_SHORT).show()
             }
         } else {
             val query = binding.sfEtSearch.text.toString()
@@ -97,7 +97,7 @@ class SearchFragment : Fragment() {
                 adapter.clearItem()
                 searchVideo(query, "")
             } else {
-                Toast.makeText(mContext, "검색어 입력해야지", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "검색어를 입력해주세요!", Toast.LENGTH_SHORT).show()
             }
 
             hideKeyboard()
