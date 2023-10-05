@@ -4,7 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.teamtube.Adapter.MyVideoAdapter
+import com.example.teamtube.Fragment.MyVideoFragment
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -17,6 +21,21 @@ class VideoDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVideoDetailBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
+    var likedItems: ArrayList<HomeitemModel> = ArrayList()
+    private lateinit var myVideoFragment: MyVideoFragment
+
+    fun addLikedItem(item: HomeitemModel) {
+        if(!likedItems.contains(item)) {
+            likedItems.add(item)
+            val titleList = likedItems.map { it.title }
+            Log.d("LikedList", "videoList: $titleList")
+        }
+    }
+    fun removeLikedItem(item: HomeitemModel) {
+        likedItems.remove(item)
+        val titleList = likedItems.map { it.title }
+        Log.d("LikedList", "videoList: $titleList")
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -27,9 +46,14 @@ class VideoDetailActivity : AppCompatActivity() {
 
         val detailList = intent.getParcelableExtra<HomeitemModel>("Data")
 
+        myVideoFragment = supportFragmentManager.findFragmentById(R.id.rv_videos) as MyVideoFragment
+
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
         binding.btnLike.text = "UNLIKE"
+
+        //var myVideoAdapter = MyVideoAdapter(this, detailList?.title ?: "")
+
 
         binding.btnLike.setOnClickListener {
             isToggled = !isToggled
@@ -40,6 +64,18 @@ class VideoDetailActivity : AppCompatActivity() {
                 val thumbnails = detailList?.thumbnails
                 val title = detailList?.title
                 Log.d("likedVideo","$thumbnails, $title")
+
+
+
+//                val bundle = Bundle()
+//                bundle.putString("title",title)
+//                val myVideoFragment = MyVideoFragment()
+//                myVideoFragment.arguments = bundle
+//                val transaction = supportFragmentManager.beginTransaction()
+//                transaction.add(MyVideoFragment)
+//                transaction.commit()
+
+//                Log.d("likedVideo","bundle: $bundle")
             } else {
                 binding.btnLike.text = "UNLIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_unlike)
@@ -78,7 +114,7 @@ class VideoDetailActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_TEXT, message)
                 type = "text/plain"
             }
-//
+
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }

@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.teamtube.Adapter.MyVideoAdapter
 import com.example.teamtube.Adapter.MyVideoFragmentAdapter
 import com.example.teamtube.MainActivity
 import com.example.teamtube.Model.ChannelModel
+import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.Retrofit.ApiData.SearchData.Thumbnails
+import com.example.teamtube.VideoDetailActivity
 import com.example.teamtube.databinding.FragmentMyVideoBinding
 
 class MyVideoFragment : Fragment() {
@@ -21,10 +24,19 @@ class MyVideoFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mContext: Context
     private var likedItems: List<ChannelModel> = listOf()
+    private var likedVideo: List<HomeitemModel> = listOf()
     private lateinit var adapter: MyVideoFragmentAdapter
+    private lateinit var _adapter: MyVideoAdapter
+
+    fun setLikedVideos(videos: List<HomeitemModel>) {
+        likedVideo = videos
+        _adapter.setVideoItems(likedVideo)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onAttach(context: Context) {
@@ -39,14 +51,17 @@ class MyVideoFragment : Fragment() {
     ): View {
 
         adapter = MyVideoFragmentAdapter(mContext)
+        _adapter = MyVideoAdapter(mContext)
 
         _binding = FragmentMyVideoBinding.inflate(inflater, container, false).apply {
             likedChannelRecyclerView.adapter = adapter
             likedChannelRecyclerView.layoutManager =
                 LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
-            //val gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            //binding.likedVideoRecyclerView.layoutManager = gridManager
+            likedVideoRecyclerView.adapter = _adapter
+            likedVideoRecyclerView.layoutManager =
+                LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+            //binding.likedVideoRecyclerView = arguments?.getString("title")
         }
         return binding.root
     }
@@ -57,8 +72,12 @@ class MyVideoFragment : Fragment() {
         likedItems = mainActivity.likedItems
 
         adapter.setChannelItems(likedItems)
-        //adapter.setVideoItems(thumbnail = "", title = "")
         Log.d("like11", "like: $likedItems")
         Log.d("lifeCycle", "my_video_fragment onResume")
+
+//        val videoDetailActivity = activity as VideoDetailActivity
+//        likedVideo = videoDetailActivity.likedItems
+//        _adapter.setVideoItems(likedVideo)
     }
+
 }
