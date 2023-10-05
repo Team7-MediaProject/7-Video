@@ -16,6 +16,7 @@ class HomeFragmentAdapter(private val context: Context) :
     RecyclerView.Adapter<HomeFragmentAdapter.VideoViewHolder>() {
 
     private val items: MutableList<HomeitemModel> = mutableListOf()
+    var itemsVideo = ArrayList<HomeitemModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val binding = MostPopularItemBinding.inflate(
