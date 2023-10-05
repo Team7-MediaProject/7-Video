@@ -1,5 +1,6 @@
 package com.example.teamtube
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,37 +25,6 @@ class VideoDetailActivity : AppCompatActivity() {
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
     var likedItems: ArrayList<HomeitemModel> = ArrayList()
-    var itemsVideo = ArrayList<HomeitemModel>()
-
-    private fun saveData() {
-        val pref = getSharedPreferences("pref", MODE_PRIVATE)
-        val edit = pref.edit()
-        val gson = Gson()
-        val json = gson.toJson(likedItems)
-        edit.putString("List", json)
-        edit.apply()
-    }
-
-    private fun loadData() {
-        val pref = getSharedPreferences("pref", MODE_PRIVATE)
-        val gson = Gson()
-        val json = pref.getString("List", null)
-        val type: Type = object : TypeToken<ArrayList<HomeitemModel>>(){}.type
-        likedItems = gson.fromJson(json, type) ?: ArrayList<HomeitemModel>()
-    }
-
-    fun addLikedItem(item: HomeitemModel) {
-        if(!likedItems.contains(item)) {
-            likedItems.add(item)
-            val titleList = likedItems.map { it.title }
-            Log.d("LikedList", "videoList: $titleList")
-        }
-    }
-    fun removeLikedItem(item: HomeitemModel) {
-        likedItems.remove(item)
-        val titleList = likedItems.map { it.title }
-        Log.d("LikedList", "videoList: $titleList")
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -79,15 +49,14 @@ class VideoDetailActivity : AppCompatActivity() {
                 val title = detailList?.title
                 Log.d("likedVideo", "$thumbnails, $title")
 
-//                val bundle = Bundle()
-//                bundle.putString("title",title)
-//                val myVideoFragment = MyVideoFragment()
-//                myVideoFragment.arguments = bundle
-//                val transaction = supportFragmentManager.beginTransaction()
-//                transaction.add(MyVideoFragment)
-//                transaction.commit()
+                val sharedPreferences = getSharedPreferences("Video", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
 
-//                Log.d("likedVideo","bundle: $bundle")
+                val gson = Gson()
+                val json: String = gson.toJson(detailList)
+
+                editor.putString(title, json)
+                editor.apply()
             } else {
                 binding.btnLike.text = "UNLIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_unlike)
