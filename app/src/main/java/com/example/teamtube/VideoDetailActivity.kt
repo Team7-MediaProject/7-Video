@@ -57,7 +57,7 @@ class VideoDetailActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_TEXT, message)
                 type = "text/plain"
             }
-
+//
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
