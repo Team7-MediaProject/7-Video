@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData.Fragment
+package com.example.teamtube.Fragment
 
 import android.os.Bundle
 import android.util.Log
