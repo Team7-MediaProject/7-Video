@@ -5,18 +5,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import java.lang.reflect.Type
 
 class VideoDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoDetailBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -27,9 +32,12 @@ class VideoDetailActivity : AppCompatActivity() {
 
         val detailList = intent.getParcelableExtra<HomeitemModel>("Data")
 
+        binding.downArrow.setOnClickListener {
+            finish()
+        }
+
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
-        binding.btnLike.text = "UNLIKE"
 
         binding.btnLike.setOnClickListener {
             isToggled = !isToggled
@@ -78,10 +86,10 @@ class VideoDetailActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_TEXT, message)
                 type = "text/plain"
             }
-//
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
+
     }
 }
 

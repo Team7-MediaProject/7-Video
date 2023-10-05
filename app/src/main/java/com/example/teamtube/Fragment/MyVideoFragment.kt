@@ -7,13 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.teamtube.Adapter.MyVideoFragmentAdapter
+import com.example.teamtube.Adapter.MyChannelFragmentAdapter
 import com.example.teamtube.MainActivity
 import com.example.teamtube.Model.ChannelModel
-import com.example.teamtube.Retrofit.ApiData.SearchData.Thumbnails
+import com.example.teamtube.VideoDetailActivity
 import com.example.teamtube.databinding.FragmentMyVideoBinding
 
 class MyVideoFragment : Fragment() {
@@ -21,7 +19,7 @@ class MyVideoFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var mContext: Context
     private var likedItems: List<ChannelModel> = listOf()
-    private lateinit var adapter: MyVideoFragmentAdapter
+    private lateinit var adapter: MyChannelFragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +36,7 @@ class MyVideoFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        adapter = MyVideoFragmentAdapter(mContext)
+        adapter = MyChannelFragmentAdapter(mContext)
 
         _binding = FragmentMyVideoBinding.inflate(inflater, container, false).apply {
             likedChannelRecyclerView.adapter = adapter

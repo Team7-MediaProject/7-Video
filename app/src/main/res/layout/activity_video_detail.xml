@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".Fragment.VideoDetailFragmant">
+    tools:context=".VideoDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/con_layout"
@@ -21,9 +21,9 @@
 
         <ImageView
             android:id="@+id/down_arrow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/icon_downarrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/detail_title"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-//
+
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/detail_view"
         android:layout_width="match_parent"
@@ -75,7 +75,7 @@
         android:id="@+id/video_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="동영상 제목(Video Title)"
         android:fontFamily="@font/dunggeunmo"
@@ -90,16 +90,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="2"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/video_title">
 
-        <ToggleButton
+        <Button
             android:id="@+id/btn_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,8 +107,7 @@
             android:layout_marginTop="10dp"
             android:text="UNLIKE"
             android:fontFamily="@font/dunggeunmo"
-            android:textSize="15sp"
-            android:enabled="true"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/video_title" />
 
@@ -122,7 +120,7 @@
             android:layout_marginTop="10dp"
             android:text="SHARE"
             android:fontFamily="@font/dunggeunmo"
-            android:textSize="15sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/btn_like"
             app:layout_constraintTop_toBottomOf="@+id/video_title" />
     </LinearLayout>

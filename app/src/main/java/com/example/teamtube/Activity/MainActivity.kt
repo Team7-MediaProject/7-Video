@@ -18,6 +18,7 @@ import java.lang.reflect.Type
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    var likedItems: ArrayList<ChannelModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,8 +71,6 @@ class MainActivity : AppCompatActivity() {
             }
         }.attach()
     }
-
-    var likedItems: ArrayList<ChannelModel> = ArrayList()
 
     private fun saveData() {
         val pref = getSharedPreferences("pref", MODE_PRIVATE)
