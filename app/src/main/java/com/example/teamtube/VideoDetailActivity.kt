@@ -11,18 +11,37 @@ import com.example.teamtube.Fragment.MyVideoFragment
 import com.example.teamtube.Model.ChannelModel
 import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import java.lang.reflect.Type
 
 class VideoDetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityVideoDetailBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
     private var isToggled = false
     var likedItems: ArrayList<HomeitemModel> = ArrayList()
-    private lateinit var myVideoFragment: MyVideoFragment
+    var itemsVideo = ArrayList<HomeitemModel>()
+
+    private fun saveData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val edit = pref.edit()
+        val gson = Gson()
+        val json = gson.toJson(likedItems)
+        edit.putString("List", json)
+        edit.apply()
+    }
+
+    private fun loadData() {
+        val pref = getSharedPreferences("pref", MODE_PRIVATE)
+        val gson = Gson()
+        val json = pref.getString("List", null)
+        val type: Type = object : TypeToken<ArrayList<HomeitemModel>>(){}.type
+        likedItems = gson.fromJson(json, type) ?: ArrayList<HomeitemModel>()
+    }
 
     fun addLikedItem(item: HomeitemModel) {
         if(!likedItems.contains(item)) {
@@ -46,26 +65,19 @@ class VideoDetailActivity : AppCompatActivity() {
 
         val detailList = intent.getParcelableExtra<HomeitemModel>("Data")
 
-        myVideoFragment = supportFragmentManager.findFragmentById(R.id.rv_videos) as MyVideoFragment
-
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
         binding.btnLike.text = "UNLIKE"
 
-        //var myVideoAdapter = MyVideoAdapter(this, detailList?.title ?: "")
-
-
         binding.btnLike.setOnClickListener {
             isToggled = !isToggled
-            if(isToggled) {
+            if (isToggled) {
                 binding.btnLike.text = "LIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_like)
 
                 val thumbnails = detailList?.thumbnails
                 val title = detailList?.title
-                Log.d("likedVideo","$thumbnails, $title")
-
-
+                Log.d("likedVideo", "$thumbnails, $title")
 
 //                val bundle = Bundle()
 //                bundle.putString("title",title)

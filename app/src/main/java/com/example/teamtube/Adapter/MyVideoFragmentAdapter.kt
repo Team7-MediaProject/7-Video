@@ -43,9 +43,6 @@ class MyVideoFragmentAdapter(private val mContext: Context) :
             .load(itemChannel.thumbnails)
             .into(holder.img_channel)
         holder.tv_channel.text = itemChannel.title
-
-        //Log.d("Video", "Video = ${itemChannel.title}")
-
     }
 
     inner class MyChannelViewHolder(binding: CategoryChannelItemBinding) :

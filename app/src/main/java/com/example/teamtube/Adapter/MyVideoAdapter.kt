@@ -14,7 +14,6 @@ import com.example.teamtube.databinding.CategoryVideoItemBinding
 
 class MyVideoAdapter(private val mContext: Context) :
     RecyclerView.Adapter<MyVideoAdapter.MyVideoViewHolder>() {
-
     var itemsVideo = mutableListOf<HomeitemModel>()
 
     fun setVideoItems(list: List<HomeitemModel>) {
