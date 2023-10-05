@@ -40,7 +40,7 @@ class CategoryVideoAdapter(private val mContext: Context) :
                 mContext.startActivity(intent)
             }
             binding.apply {
-                homeCategoryVideoTitle.text = item.categoryTitle
+                homeCategoryVideoTitle.text = item.title
             }
 
             Glide.with(mContext)

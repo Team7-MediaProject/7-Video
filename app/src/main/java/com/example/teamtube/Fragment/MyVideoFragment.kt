@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData.Fragment
+package com.example.teamtube.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -23,13 +23,9 @@ class MyVideoFragment : Fragment() {
     private var likedItems: List<ChannelModel> = listOf()
     private lateinit var adapter: MyVideoFragmentAdapter
 
-//    override fun onCreate(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?, savedInstanceState: Bundle?
-//    ): View {
-//        _binding = FragmentMyVideoBinding.inflate(inflater, container, false)
-//        super.onCreate(savedInstanceState)
-//    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,8 +45,8 @@ class MyVideoFragment : Fragment() {
             likedChannelRecyclerView.layoutManager =
                 LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
 
-            val gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            binding.likedVideoRecyclerView.layoutManager = gridManager
+            //val gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            //binding.likedVideoRecyclerView.layoutManager = gridManager
         }
         return binding.root
     }
@@ -65,8 +61,4 @@ class MyVideoFragment : Fragment() {
         Log.d("like11", "like: $likedItems")
         Log.d("lifeCycle", "my_video_fragment onResume")
     }
-
-//    fun setVideoItems(thumbnails: String, title: String) {
-//        adapter.setVideoItems(thumbnails, title)
-//    }
 }

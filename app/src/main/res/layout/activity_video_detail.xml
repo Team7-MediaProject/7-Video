@@ -45,11 +45,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
+//
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/detail_view"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="350dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -106,6 +106,7 @@
             android:layout_weight="1"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:text="UNLIKE"
             android:fontFamily="@font/dunggeunmo"
             android:textSize="15sp"
             android:enabled="true"
@@ -150,22 +151,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider_2">
 
-        <TextView
-            android:id="@+id/detail_info"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="8dp"
-            android:text="동영상 상세정보 입니다."
-            android:fontFamily="@font/dunggeunmo"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
+                android:text="동영상 상세정보 입니다."
+                android:fontFamily="@font/dunggeunmo"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
