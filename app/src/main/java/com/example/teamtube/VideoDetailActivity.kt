@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
-import com.example.teamtube.Adapter.MyVideoFragmentAdapter
-import com.example.teamtube.ChannelData.Fragment.MyVideoFragment
 import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -29,11 +27,6 @@ class VideoDetailActivity : AppCompatActivity() {
 
         val detailList = intent.getParcelableExtra<HomeitemModel>("Data")
 
-        detailList?.thumbnails?.let { imageUrl ->
-            Glide.with(this)
-                .load(imageUrl)
-                .into(binding.detailView)
-        }
         binding.videoTitle.text = detailList?.title
         binding.detailInfo.text = detailList?.description
         binding.btnLike.text = "UNLIKE"
@@ -52,7 +45,7 @@ class VideoDetailActivity : AppCompatActivity() {
                 binding.btnLike.setBackgroundResource(R.drawable.video_unlike)
             }
         }
-    }
+
         detailList?.id?.let { videoId ->
             youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
                 override fun onReady(youTubePlayer: YouTubePlayer) {
