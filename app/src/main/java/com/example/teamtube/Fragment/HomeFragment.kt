@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData.Fragment
+package com.example.teamtube.Fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -221,7 +221,7 @@ class HomeFragment : Fragment() {
                     resItemsVideo.clear()
                     videos.forEach {
                         Log.d("CategoryyyId", "$selectedId")
-                        Log.d("id 값", "$it.")
+                        Log.d("id 값", "${it.snippet.title}")
                         val id = selectedId
                         val title = it.snippet.title
                         val thumbnail = it.snippet.thumbnails.high.url

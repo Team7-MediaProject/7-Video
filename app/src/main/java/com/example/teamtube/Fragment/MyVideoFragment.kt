@@ -1,4 +1,4 @@
-package com.example.teamtube.ChannelData.Fragment
+package com.example.teamtube.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -42,10 +42,6 @@ class MyVideoFragment : Fragment() {
             likedChannelRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         }
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     override fun onResume() {
