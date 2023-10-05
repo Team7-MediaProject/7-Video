@@ -20,9 +20,13 @@ class MyVideoFragment : Fragment() {
     private var likedItems: List<ChannelModel> = listOf()
     private lateinit var adapter: MyVideoFragmentAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+//    override fun onCreate(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?, savedInstanceState: Bundle?
+//    ): View {
+//        _binding = FragmentMyVideoBinding.inflate(inflater, container, false)
+//        super.onCreate(savedInstanceState)
+//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,7 +43,8 @@ class MyVideoFragment : Fragment() {
 
         _binding = FragmentMyVideoBinding.inflate(inflater, container, false).apply {
             likedChannelRecyclerView.adapter = adapter
-            likedChannelRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+            likedChannelRecyclerView.layoutManager =
+                LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         }
         return binding.root
     }
@@ -54,7 +59,7 @@ class MyVideoFragment : Fragment() {
         likedItems = mainActivity.likedItems
 
         adapter.setItems(likedItems)
-        Log.d("like11","like: $likedItems")
+        Log.d("like11", "like: $likedItems")
         Log.d("lifeCycle", "my_video_fragment onResume")
     }
 }

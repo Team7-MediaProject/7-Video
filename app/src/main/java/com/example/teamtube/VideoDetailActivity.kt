@@ -27,10 +27,13 @@ class VideoDetailActivity : AppCompatActivity() {
         binding.btnLike.text = "UNLIKE"
 
         binding.btnLike.setOnClickListener {
+            val bundle = Bundle()
             isToggled = !isToggled
             if(isToggled) {
                 binding.btnLike.text = "LIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_like)
+                bundle.putString("thumbnails", detailList?.thumbnails)
+                bundle.putString("title", detailList?.title)
             } else {
                 binding.btnLike.text = "UNLIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_unlike)
