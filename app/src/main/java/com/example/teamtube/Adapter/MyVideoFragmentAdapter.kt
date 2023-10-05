@@ -21,10 +21,15 @@ class MyVideoFragmentAdapter(private val mContext: Context) :
     var itemsChannel= mutableListOf<ChannelModel>()
     var itemsVideo= mutableListOf<HomeitemModel>()
 
-    fun setItems(list: List<ChannelModel>) {
+    fun setChannelItems(list: List<ChannelModel>) {
         itemsChannel = list.toMutableList()
         notifyDataSetChanged()
     }
+//    fun setVideoItems(thumbnail: String, title: String) {
+//        val item = HomeitemModel(thumbnail, title)
+//
+//        notifyDataSetChanged()
+//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyChannelViewHolder {
         val binding = CategoryChannelItemBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -55,21 +60,19 @@ class MyVideoFragmentAdapter(private val mContext: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         var img_channel : ImageView = binding.imgChannel
-        var like_image: ImageView = binding.likeImageView
         var tv_channel: TextView = binding.titleChannel
-        var channel_item: ConstraintLayout = binding.channelItemConstraintLayout
 
-        init {
-
-            channel_item.setOnClickListener {
-                val position = adapterPosition
-                (mContext as MainActivity).removeLikedItem(itemsChannel[position])
-
-                if(position != RecyclerView.NO_POSITION) {
-                    itemsChannel.removeAt(position)
-                    notifyItemRemoved(position)
-                }
-            }
-        }
+//        init {
+//
+//            channel_item.setOnClickListener {
+//                val position = adapterPosition
+//                (mContext as MainActivity).removeLikedItem(itemsChannel[position])
+//
+//                if(position != RecyclerView.NO_POSITION) {
+//                    itemsChannel.removeAt(position)
+//                    notifyItemRemoved(position)
+//                }
+//            }
+//        }
     }
 }

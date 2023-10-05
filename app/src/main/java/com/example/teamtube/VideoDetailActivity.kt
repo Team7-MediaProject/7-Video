@@ -2,7 +2,10 @@ package com.example.teamtube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.teamtube.Adapter.MyVideoFragmentAdapter
+import com.example.teamtube.ChannelData.Fragment.MyVideoFragment
 import com.example.teamtube.Model.HomeitemModel
 import com.example.teamtube.databinding.ActivityVideoDetailBinding
 
@@ -27,13 +30,14 @@ class VideoDetailActivity : AppCompatActivity() {
         binding.btnLike.text = "UNLIKE"
 
         binding.btnLike.setOnClickListener {
-            val bundle = Bundle()
             isToggled = !isToggled
             if(isToggled) {
                 binding.btnLike.text = "LIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_like)
-                bundle.putString("thumbnails", detailList?.thumbnails)
-                bundle.putString("title", detailList?.title)
+
+                val thumbnails = detailList?.thumbnails
+                val title = detailList?.title
+                Log.d("likedVideo","$thumbnails, $title")
             } else {
                 binding.btnLike.text = "UNLIKE"
                 binding.btnLike.setBackgroundResource(R.drawable.video_unlike)
